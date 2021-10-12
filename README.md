@@ -1,4 +1,4 @@
-# gourment-district
+# gourmet-district
 
 ## Build Setup
 

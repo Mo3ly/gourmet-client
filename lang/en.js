@@ -7,7 +7,7 @@ module.exports = {
       currency: 'QR'
     },
     iso: 'en-US',
-    name: 'Gourment district',
+    name: 'Gourmet district',
     main_menu: 'MENU',
   
     header: {
@@ -59,10 +59,10 @@ module.exports = {
     },
     home:{
       home: 'home',
-      landing_title: 'Gourment,',
+      landing_title: 'Gourmet,',
       landing_title2: 'the first indoor park in Qatar.',
       landing_desc: 'The concept is offering you (Yes special You) a venue that offers from the best Burgers to the best cakes in town..',
-      gd_resturants: 'Gourment resturants',
+      gd_resturants: 'Gourmet resturants',
       discover_btn: 'Discover the place',
       book_btn: 'Book now!'
     },

@@ -2,7 +2,7 @@
     <div class="min-h-screen flex items-center justify-center py-6 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full space-y-8">
         <div>
-            <img class="mx-auto h-20 w-auto" src="~/static/images/logo/logo.svg" alt="gourment" />
+            <img class="mx-auto h-20 w-auto" src="~/static/images/logo/logo.svg" alt="gourmet" />
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
                 Create an account
             </h2>

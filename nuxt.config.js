@@ -18,7 +18,7 @@ export default {
 
   // Global page headers
   head: {
-    title: 'Gourment District',
+    title: 'Gourmet District',
     htmlAttrs: {
       lang: 'en'
     },
@@ -36,7 +36,7 @@ export default {
       // { name: 'apple-mobile-web-app-status-bar-style', content: '#ffffff' },
       // { name: 'apple-mobile-web-app-capable', content: 'yes' },
       // { name: 'apple-mobile-web-app-status-bar-style', content:'black'},
-      // { name: 'apple-mobile-web-app-title', content:"Gourment"},
+      // { name: 'apple-mobile-web-app-title', content:"Gourmet"},
     ],
     link: [
       // { rel: "icon", type: "image/x-icon", href: "/images/logo/favicon.ico" },
@@ -214,14 +214,14 @@ export default {
       filename: 'icon.png'
     },
     manifest: {
-      name: 'Gourment District',
-      short_name: 'Gourment',
-      description: 'Gourment district the first indoor food court in Qatar.',
+      name: 'Gourmet District',
+      short_name: 'Gourmet',
+      description: 'Gourmet district the first indoor food court in Qatar.',
       // start_url: "./?mode=standalone"
     },
     meta: {
-      name: 'Gourment',
-      description: 'Gourment district the first indoor food court in Qatar.',
+      name: 'Gourmet',
+      description: 'Gourmet district the first indoor food court in Qatar.',
       theme_color: '#ffffff',
       lang: 'en',
       // favicon: true,

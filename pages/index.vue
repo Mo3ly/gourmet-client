@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="lg:absolute lg:inset-y-0 rtl-map lg:w-1/2 -transform -scale-100">
-      <img class="animate__animated animate__jackInTheBox animate__delay-2s " src="~/static/images/layout/gd-map.png" alt=" gourment map" />
+      <img class="animate__animated animate__jackInTheBox animate__delay-2s " src="~/static/images/layout/gd-map.png" alt=" gourmet map" />
     </div>
   </div>
 
