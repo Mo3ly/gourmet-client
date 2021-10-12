@@ -1,0 +1,105 @@
+<template>
+<div>
+  <header :class="$route.path === '/' || $route.path === '/ar' ? '' : 'border-b-2 dark:border-gray-500 dark:border-opacity-20'" >
+    <div class="max-w-8xl mx-auto px-2 sm:px-6 lg:px-8 sticky top-0 left-0 right-0 z-30">
+      <div class="relative flex items-center justify-between h-16">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button-->
+          <div v-if="$route.path !== '/' && $route.path !== '/ar'">
+            <button class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-pink-500 -bg-pink-600 border-pink-500 hover:text-pink-400 focus:outline-none" @click="backward">
+                <i class="gd-icons icon-double-left"/>
+            </button>
+          </div>
+          <div v-else>
+            <layout-aside-menu />
+          </div>
+        </div>
+        <!-- Big logo -->
+        <div v-if="$route.path === '/' || $route.path === '/ar'"  class="h-10 mb-5 relative z-10">
+            <router-link :to="localePath('/')">
+              <img class="hidden lg:block md:block animate__animated animate__backInDown w-20" src="~/static/images/logo/logo.svg" alt="Gouremnt logo" />
+            </router-link>
+        </div>
+        <div v-else>
+          <router-link :to="localePath('/')">
+              <img class="hidden lg:block md:block w-20" src="~/static/images/logo/logo-text.svg" alt="Gouremnt logo text" />
+            </router-link>
+        </div>   
+        
+        <!--/ Big logo -->
+        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+          <div class="flex-shrink-0 flex items-center">
+            <router-link :to="localePath('/')">
+              <img v-if="$route.path === '/' || $route.path === '/ar' " class="block h-20 mt-5 md:hidden lg:hidden sm:hidden animate__animated animate__backInDown w-20" src="~/static/images/logo/logo.svg" alt="Gouremnt logo" />
+              <img v-else class="block md:hidden lg:hidden sm:hidden animate__animated animate__backInDown  w-20" src="~/static/images/logo/logo-text.svg" alt="Gouremnt logo" />
+            </router-link>
+          </div>    
+          <div class="hidden sm:block sm:ml-6">
+            <div class="flex header-links space-s-4">
+              <NuxtLink v-for="link in $t('header.links')" :key="link.slug" :to="localePath(link.slug)" class="px-3 py-2 text-gray-500 hover:text-pink-500 text-base font-medium" exact>
+                {{ link.name }}
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
+        <div class="absolute animate__animated animate__flipInX inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+          <div class="hidden md:block lg:block">
+            <dark-mode-toggler />
+          </div>
+          <!-- Language -->
+          <div>
+            <ui-language-switcher></ui-language-switcher>  
+          </div>
+          <!-- Language -->
+
+          <nuxt-link :to="localePath('/cart')" v-if="$route.path != '/' && $route.path != '/ar'" class="group -m-2 p-2 flex items-center">
+              <i class="gd-icons icon-basket-simple flex-shrink-0 text-gray-400 group-hover:text-gray-500" aria-hidden="true"></i>
+              <span class="ms-2 text-sm font-medium text-gray-700 group-hover:text-gray-800 dark:text-white">{{ cartCount }}</span>
+              <span class="sr-only">items in cart, view bag</span>
+          </nuxt-link>
+        </div>
+      </div>
+    </div>
+  </header>  
+</div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+const navigation = [
+  { name: 'Home', href: '/' },
+  { name: 'Resturants', href: '/resturants'},
+  { name: 'Events', href: '#' },
+  { name: 'Gallery', href: '#' },
+  { name: 'About', href: '#' },
+]
+
+export default {
+  components: {
+    DarkModeToggler: () => import('../ui/DarkModeToggle.vue'),
+    IconMenu: () => import('../icons/IconMenu.vue')
+  },
+  data() {
+    return {
+      navigation,
+    }
+  },
+  methods: {
+    backward() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+    },
+  },
+  computed: {
+    ...mapGetters({
+      cartCount: 'getCartTotalQuantity',
+    })
+  }
+};
+</script>
+
+<style scoped>
+.header-links a.nuxt-link-exact-active {
+    @apply text-pink-500 border-b-2 border-pink-500
+}
+</style>

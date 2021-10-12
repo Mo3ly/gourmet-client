@@ -1,0 +1,119 @@
+<template>
+  <div>
+    <!-- Banner -->
+    <div class="relative overflow-hidden">
+    <div class="mx-auto">
+      <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-xl lg:w-full lg:pb-28 xl:pb-32">
+        <main class="mt-10 mx-auto max-w-5xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+          <div class="sm:text-center lg:text-left animate__animated animate__bounceInLeft animate__delay-1s">
+            <h1 class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
+              <span class="block text-gray-900 dark:text-gray-100 xl:inline">{{ $t('home.landing_title') }}</span>
+              <span class="block bg-clip-text text-transparent bg-gradient-to-r font-flower from-pink-500 to-pink-300 xl:inline">{{ $t('home.landing_title2') }}</span>
+            </h1>
+            <p class="mt-3 text-base dark:text-white  text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+              {{ $t('home.landing_desc') }}
+            </p>
+            <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+              <div class="rounded-md shadow">
+                <a href="#map-keys" class="w-full flex items-center justify-center px-8 py-3 border font-flower border-transparent text-base font-medium rounded-md animate-pulse text-white bg-pink-600 hover:bg-pink-700 md:py-4 md:text-lg md:px-10"  v-smooth-scroll>
+                  {{ $t('home.discover_btn') }}
+                </a>
+              </div>
+              <div class="mt-3 sm:mt-0 sm:ms-3">
+                <NuxtLink :to="localePath('book')" class="w-full font-flower flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-pink-700 bg-pink-100 hover:bg-pink-200 md:py-4 md:text-lg md:px-10">
+                  <span class="flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
+                  </span>
+                  &nbsp; {{ $t('home.book_btn') }}
+                </NuxtLink>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="lg:absolute lg:inset-y-0 rtl-map lg:w-1/2 -transform -scale-100">
+      <img class="animate__animated animate__jackInTheBox animate__delay-2s " src="~/static/images/layout/gd-map.png" alt=" gourment map" />
+    </div>
+  </div>
+
+    <!-- Gourmet Video -->
+    <!-- <div>
+      <h1 class="sm:text-3xl text-2xl font-bold uppercase title-font text-center pt-10 text-pink-500 mt-2">{{ $t('name') }}</h1>
+      <div class="m-10 p-5 shadow-md rounded bg-pink-200">
+        <div class="aspect-w-16 aspect-h-8">
+          <iframe src="https://www.youtube-nocookie.com/embed/TixsV6fSpRo?version=3&enablejsapi=1&html5=1&hd=1&wmode=opaque&showinfo=0&rel=0&origin=http://www.g-d.qa;&controls=0&playsinline=1&?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+  
+    <!-- Resturants -->
+    <section id="map-keys" class="text-gray-600 body-font">
+    <h1 class="sm:text-3xl text-2xl font-bold uppercase title-font text-center pt-10 text-pink-500">{{ $t('home.gd_resturants') }}</h1>
+
+    <div v-if="$fetchState.pending || $fetchState.error">
+      <skeletons-home-resturants />
+    </div>
+
+    <div v-else class="container px-5 py-12 mx-auto flex flex-wrap">
+      <div v-for="resturant in resturants" :key="resturant.id" class="flex relative pt-2 pb-10 sm:items-center md:w-2/3 mx-auto">
+        <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
+          <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
+        </div>
+        <div class="flex-shrink-0 w-6 h-6 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-pink-500 text-white relative z-10 title-font font-medium text-sm">{{ resturant.id }}</div>
+        <div class="flex-grow md:ps-8 ps-6 flex sm:items-center items-start flex-col sm:flex-row">
+          <NuxtLink :to="localePath({ path: 'resturant/' + resturant.name_en})">
+          <div class="flex-shrink-0 w-24 h-24 bg-pink-100 text-pink-500 rounded-full inline-flex items-center justify-center">
+           <img class="w-20 h-20 rounded-full object-cover object-center" :src="resturant.image">
+          </div>
+          </NuxtLink>
+          <div class="flex-grow sm:ps-6 mt-6 sm:mt-0">
+          <h2 class="font-medium title-font text-gray-900 dark:text-gray-100 mb-1 text-xl">
+             <NuxtLink class="text-pink-500" :to="localePath({ path: 'resturant/' + resturant.name_en})">{{ $i18n.locale == 'en' ? resturant.name_en : resturant.name_ar }}</NuxtLink>
+          </h2>
+          <p class="leading-relaxed dark:text-gray-100">{{ $i18n.locale == 'en' ? resturant.desc_en : resturant.desc_ar }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+  </div>
+  
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      api: process.env.API,
+      resturants: [],
+    };
+  },
+  activated() {
+    if (this.$fetchState.timestamp <= Date.now() - 30000) {
+      this.$fetch();
+      console.log('refetched the resturants data');
+    }
+  },
+  async fetch() {
+      this.resturants = await this.$axios.get('/api/resturants')
+        .then((response) => {
+          return response.data
+        })
+      .catch(e => console.log(e))
+      console.log('fetched resturants data');
+
+  },
+}
+</script>
+
+<style scoped>
+[dir='rtl'] .rtl-map {
+  left: 0px !important;
+}
+
+[dir='ltr'] .rtl-map {
+  right: 0px !important;
+}
+</style>
