@@ -240,8 +240,8 @@ export default {
 
   publicRuntimeConfig: {
     appLocale: process.env.APP_LOCALE || 'en',
+    URL: process.env.URL || false,
     API: process.env.API || false,
-    API: process.env.URL || false,
   },
 
   // Build Configuration
