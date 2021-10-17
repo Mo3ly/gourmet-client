@@ -5,7 +5,6 @@
       <span class="inline-flex items-center justify-center h-5 pt-1 text-xs font-medium text-white bg-pink-500 px-2 rounded-sm">{{ pagination.total }}</span>
     </h3>
 
-    <audio type="audio/mpeg" ref="audio" src="http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3"></audio>
     <!-- Search bar -->
     <div class="pb-3 pt-4">
       <div class="bg-white  dark:bg-dark-surface flex items-center rounded-md shadow">
@@ -68,7 +67,8 @@
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                   <div v-if="order.products.length > 0" class="flex items-center justify-center">
-                    <img v-for="product in order.products" :key="product.id" :title="`(${product.data.resturant}) ${product.quantity}x ${product.data.name_en} - ${product.total_price} ${$t('common.currency')} - Notes: ${product.notes == null ? 'Nothing' : product.notes}`" class="w-8 h-8 rounded-full border-gray-200 border -m-1 transform hover:scale-125" :src="product.data.image" />
+                    <img v-for="product in order.products.slice(0, 5)" :key="product.id" :title="`(${product.data.resturant}) ${product.quantity}x ${product.data.name_en} - ${product.total_price} ${$t('common.currency')} - Notes: ${product.notes == null ? 'Nothing' : product.notes}`" class="w-8 h-8 rounded-full border-gray-200 border -m-1 transform hover:scale-125" :src="product.data.image" />
+                    <div v-if="order.products.length > 5" class="w-8 h-8 rounded-full border-gray-200 border -m-1 transform hover:scale-125 text-xs font-semibold bg-gray-200 text-gray-800 text-center  flex items-center justify-center">+{{ order.products.length - 5 }}</div>
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -135,9 +135,9 @@
                   <a v-for="page in pagination.last_page" :key="page" @click.stop="loadPage(page)" :class="[currentPage == page ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600' : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50']" class="relative inline-flex cursor-pointer items-center px-4 py-2 border text-sm font-medium">
                     {{ page }}
                   </a>
-                  <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                  <!-- <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
                     ...
-                  </span>
+                  </span> -->
                   <a @click="nextPage" class="relative inline-flex cursor-pointer items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
                     <span class="sr-only">Next</span>
                     <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -161,7 +161,6 @@
         api: process.env.API,
         currentPage: 1,
         offset: 4,
-        pages: [],
         orders: [],
         pagination: [],
         searchQuery: null,
@@ -176,14 +175,6 @@
           title: `Order #${order.id} . <span class="text-base text-pink-500">Table: ${order.table}</span>`,
           html: data,
         });
-      },
-
-      orderBuzz() {
-        this.$refs.audio.play();
-        // this.$refs.audio.addEventListener("canplaythrough", () => {
-        //   this.$refs.audio.volume = 1;
-        //   this.$refs.audio.play();
-        // });
       },
 
       async orderEdit(order) {
@@ -265,7 +256,7 @@
       },
 
       async previousPage() {
-        if (this.currentPage > 0) {
+        if (this.currentPage > 1) {
           this.currentPage--;
           this.$router.app.refresh();
         }
@@ -305,20 +296,13 @@
     },
     mounted() {
       this.$echo.channel("gourmet-orders").listen("OrderReceived", (response) => {
-        const Toast = this.$swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 10000,
-          timerProgressBar: true,
-        });
-        Toast.fire({
-          icon: "success",
-          html: `New Order #<b>${response.id}</b> for table ${response.table}.`,
-        });
-        if (this.currentPage == 1) this.$router.app.refresh();
-        else this.orders.unshift(response);
-        this.orderBuzz();
+        this.$axios
+          .get("/api/orders/id/" + response.order_id)
+          .then((order) => {
+            if (this.currentPage == 1) this.$router.app.refresh();
+            else this.orders.unshift(order.data);
+          })
+          .catch((e) => console.log(e));
       });
     },
     activated() {
@@ -335,7 +319,6 @@
           this.pagination = response.data["pagination"];
         })
         .catch((e) => console.log(e));
-      console.log("fetched orders data");
     },
   };
 </script>

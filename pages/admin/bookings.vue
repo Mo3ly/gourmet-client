@@ -5,7 +5,6 @@
       <span class="inline-flex items-center justify-center h-5 pt-1 text-xs font-medium text-white bg-pink-500 px-2 rounded-sm">{{ pagination.total }}</span>
     </h3>
 
-    <audio type="audio/mpeg" ref="audio" src="http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3"></audio>
     <!-- Search bar -->
     <div class="pb-3 pt-4">
       <div class="bg-white  dark:bg-dark-surface flex items-center rounded-md shadow">
@@ -155,17 +154,12 @@
         api: process.env.API,
         currentPage: 1,
         offset: 4,
-        pages: [],
         bookings: [],
         pagination: [],
         searchQuery: null,
       };
     },
     methods: {
-      bookingBuzz() {
-        this.$refs.audio.play();
-      },
-
       async bookingEdit(booking) {
         const { value: bookingStatus } = await this.$swal.fire({
           title: "Select booking status",
@@ -245,7 +239,7 @@
       },
 
       async previousPage() {
-        if (this.currentPage > 0) {
+        if (this.currentPage > 1) {
           this.currentPage--;
           this.$router.app.refresh();
         }
@@ -285,26 +279,13 @@
     },
     mounted() {
       this.$echo.channel("gourmet-bookings").listen("BookingReceived", (response) => {
-        const Toast = this.$swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 10000,
-          timerProgressBar: true,
-        });
-        Toast.fire({
-          icon: "success",
-          html: `New booking #<b>${response.id}</b> for Client ${response.name}.`,
-        });
         if (this.currentPage == 1) this.$router.app.refresh();
         else this.bookings.unshift(response);
-        this.bookingBuzz();
       });
     },
     activated() {
       if (this.$fetchState.timestamp <= Date.now() - 30000) {
         this.$fetch();
-        console.log("refetched the bookings data");
       }
     },
     async fetch() {
@@ -315,7 +296,6 @@
           this.pagination = response.data["pagination"];
         })
         .catch((e) => console.log(e));
-      console.log("fetched bookings data");
     },
   };
 </script>
