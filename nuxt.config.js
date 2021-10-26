@@ -1,7 +1,7 @@
-import webpack from 'webpack'
+import webpack from "webpack";
 
 export default {
-  target: 'server',
+  target: "server",
 
   ssr: true,
 
@@ -12,21 +12,21 @@ export default {
     // background: 'white'
   },
 
-  loading:{
-    color: '#fbcfe8',
+  loading: {
+    color: "#fbcfe8",
   },
 
   // Global page headers
   head: {
-    title: 'Gourmet District',
+    title: "Gourmet District",
     htmlAttrs: {
-      lang: 'en'
+      lang: "en",
     },
     meta: [
       // { charset: 'utf-8' },
       // { name: 'theme-color', content: '#ffffff' },
-      { name: 'viewport', content: 'width=device-width,initial-scale=1,maximum-scale=1' },
-      { hid: 'description', name: 'description', content: 'The first indoor food court in qatar' },
+      { name: "viewport", content: "width=device-width,initial-scale=1,maximum-scale=1" },
+      { hid: "description", name: "description", content: "The first indoor food court in qatar" },
       // { name: 'format-detection', content: 'telephone=no' },
       // { name: 'msapplication-TileColor', content: '#ffffff' },
       // { name: 'msapplication-TileImage', content: '/images/logo/ms-icon-144x144.png' },
@@ -65,60 +65,46 @@ export default {
     //   }
     // ],
     bodyAttrs: {
-      class: 'bg-light-surface dark:bg-dark-surface text-light-onSurfacePrimary dark:text-dark-onSurfacePrimary',
-    }
+      class: "bg-light-surface dark:bg-dark-surface text-light-onSurfacePrimary dark:text-dark-onSurfacePrimary",
+    },
   },
 
   // Global CSS
-  css: [
-    'assets/css/style.css',
-    'animate.css/animate.min.css',
-    'assets/css/nucleo-icons.css',
-  ],
+  css: ["assets/css/style.css", "animate.css/animate.min.css", "assets/css/nucleo-icons.css"],
 
   // Plugins to run before rendering page:
   plugins: [
-    '~/plugins/app-plugins',
+    "~/plugins/app-plugins",
     // '~/plugins/i18n',
     // '~/plugins/extra/polyfills',
-    '~/plugins/html-to-paper.js',
-    '~/plugins/directives',
-    '~/plugins/qrcode',
-    '~/plugins/scroll-behaviour',
+    "~/plugins/html-to-paper.js",
+    "~/plugins/directives",
+    "~/plugins/qrcode",
+    { src: "@/plugins/qrcode-reader.js", mode: "client" },
+    "~/plugins/scroll-behaviour",
   ],
 
   // Auto import components
   components: true,
 
   // Modules for dev and build (recommended):
-  buildModules: [
-    '@nuxtjs/svg',
-    '@nuxtjs/color-mode',
-    '@nuxtjs/tailwindcss',
-    '@nuxtjs/pwa',
-    '@nuxtjs/laravel-echo',
-  ],
+  buildModules: ["@nuxtjs/svg", "@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@nuxtjs/pwa", "@nuxtjs/laravel-echo"],
 
   // Modules:
-  modules: [
-    'nuxt-i18n',
-    '@nuxtjs/axios',
-    '@nuxtjs/auth-next',
-    'vue-sweetalert2/nuxt'
-  ],
+  modules: ["nuxt-i18n", "@nuxtjs/axios", "@nuxtjs/auth-next", "vue-sweetalert2/nuxt"],
 
   // sweet alert
   sweetalert: {
-    confirmButtonColor: '#ec4899',
-    cancelButtonColor: '#ff7674'
+    confirmButtonColor: "#ec4899",
+    cancelButtonColor: "#ff7674",
   },
 
   // echo
   echo: {
-    broadcaster: 'pusher',
-    key: 'c2be61a4be77aa9b3c47',
-    cluster: 'ap2',
-    forceTLS: true
+    broadcaster: "pusher",
+    key: "c2be61a4be77aa9b3c47",
+    cluster: "ap2",
+    forceTLS: true,
   },
 
   // router
@@ -127,46 +113,46 @@ export default {
   },
 
   // Auth
-  auth:{
-    strategies:{
-      'laravelSanctum': {
-        provider: 'laravel/sanctum',
+  auth: {
+    strategies: {
+      laravelSanctum: {
+        provider: "laravel/sanctum",
         url: process.env.API.slice(0, -1),
-        endpoints:{
+        endpoints: {
           login: {
-            url: '/api/login'
+            url: "/api/login",
           },
-          logout:{
-            url: '/api/logout'
+          logout: {
+            url: "/api/logout",
           },
           user: {
-            property: false
-          }
-        }
-      }
+            property: false,
+          },
+        },
+      },
     },
     redirect: {
-      login: '/login',
-      logout: '/',
-      home: '/'
-    }
+      login: "/login",
+      logout: "/",
+      home: "/",
+    },
   },
   axios: {
     baseURL: process.env.API,
     proxy: false,
-    credentials: true
+    credentials: true,
   },
 
   proxy: {
-    '/api': {
+    "/api": {
       target: process.env.API,
-      pathRewrite: { '^/api': '/' }
-    }
+      pathRewrite: { "^/api": "/" },
+    },
   },
 
   // dark-mode lib
   colorMode: {
-    preference: 'light'
+    preference: "light",
   },
 
   // locale lib
@@ -174,62 +160,62 @@ export default {
     //strategy: 'no_prefix',
     locales: [
       {
-        name: 'English',
-        code: 'en',
-        file: 'en.js',
-        icon: 'united-states-flag',
-        iso: 'en-US',
-        dir: 'ltr',
+        name: "English",
+        code: "en",
+        file: "en.js",
+        icon: "united-states-flag",
+        iso: "en-US",
+        dir: "ltr",
       },
       {
-        name: 'العربية',
-        code: 'ar',
-        file: 'ar.js',
-        icon: 'qatar-flag',
-        iso: 'ar',
-        dir: 'rtl',
-      }
+        name: "العربية",
+        code: "ar",
+        file: "ar.js",
+        icon: "qatar-flag",
+        iso: "ar",
+        dir: "rtl",
+      },
     ],
     vueI18n: {
-      fallbackLocale: 'en'
+      fallbackLocale: "en",
     },
     parsePages: false,
     detectBrowserLanguage: false,
     seo: false,
     lazy: true,
-    langDir: 'lang/',
-    defaultLocale: 'en',
+    langDir: "lang/",
+    defaultLocale: "en",
   },
-  
+
   // 404 fallback
   generate: {
     fallback: true,
-    routes: ['/', '404']
+    routes: ["/", "404"],
   },
 
   // progressive we app lib
   pwa: {
     icon: {
-      source: 'static/icon.png',
-      filename: 'icon.png'
+      source: "static/icon.png",
+      filename: "icon.png",
     },
     manifest: {
-      name: 'Gourmet District',
-      short_name: 'Gourmet',
-      description: 'Gourmet district the first indoor food court in Qatar.',
+      name: "Gourmet District",
+      short_name: "Gourmet",
+      description: "Gourmet district the first indoor food court in Qatar.",
       // start_url: "./?mode=standalone"
     },
     meta: {
-      name: 'Gourmet',
-      description: 'Gourmet district the first indoor food court in Qatar.',
-      theme_color: '#ffffff',
-      lang: 'en',
+      name: "Gourmet",
+      description: "Gourmet district the first indoor food court in Qatar.",
+      theme_color: "#ffffff",
+      lang: "en",
       // favicon: true,
       //mobileApp: true,
       //mobileAppIOS: true,
       //appleStatusBarStyle: 'black-translucent',
       nativeUI: true,
-    }
+    },
   },
 
   // env
@@ -239,7 +225,7 @@ export default {
   },
 
   publicRuntimeConfig: {
-    appLocale: process.env.APP_LOCALE || 'en',
+    appLocale: process.env.APP_LOCALE || "en",
     URL: process.env.URL || false,
     API: process.env.API || false,
   },
@@ -257,24 +243,24 @@ export default {
         removeEmptyAttributes: true,
         removeRedundantAttributes: true,
         trimCustomFragments: true,
-        useShortDoctype: true
+        useShortDoctype: true,
       },
       plugins: [
         new webpack.IgnorePlugin({
           resourceRegExp: /^\.\/locale$/,
-          contextRegExp: /moment$/
-        })
+          contextRegExp: /moment$/,
+        }),
       ],
-      loaders:  {
+      loaders: {
         vue: {
-           prettify: false
-        }
-      }
+          prettify: false,
+        },
+      },
     },
   },
 
   // Server Configuration
-  server:{
-    host: "0.0.0.0"
-  }
-}
+  server: {
+    host: "0.0.0.0",
+  },
+};

@@ -98,7 +98,7 @@
           })
           .then((r) => {
             if (r.data.success) {
-              this.$swal.fire({ icon: "success", text: this.$i18n.locale == "ar" ? "تم إرسال طلب الحجز بنجاح وسيتم التواصل معكم للتأكيد." : r.data.success });
+              this.$swal.fire({ icon: "success", text: this.$i18n.locale == "ar" ? "تم إرسال طلب الحجز بنجاح وسيتم التواصل معكم للتأكيد." : r.data.success, timer: 3000, timerProgressBar: true });
               this.name = "";
               this.email = "";
               this.phone = "";
@@ -106,7 +106,7 @@
               this.notes = "";
             }
           })
-          .catch((e) => this.$swal.fire({ icon: "error", text: e.response.data.message }));
+          .catch((e) => this.$swal.fire({ icon: "error", text: e.response.data.message, timer: 3000, timerProgressBar: true }));
       },
     },
   };

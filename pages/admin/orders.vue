@@ -209,7 +209,7 @@
             })
             .catch((e) => {
               if (e.response.status == 422) {
-                this.$swal.fire({ icon: "error", text: e.response.data.message });
+                this.$swal.fire({ icon: "error", text: e.response.data.message, timer: 3000, timerProgressBar: true });
               }
             });
         }
@@ -230,13 +230,13 @@
                 })
                 .then((r) => {
                   if (r.data.success) {
-                    this.$swal.fire({ icon: "success", text: r.data.success });
+                    this.$swal.fire({ icon: "success", text: r.data.success, timer: 3000, timerProgressBar: true });
                     this.$router.app.refresh();
                   }
                 })
                 .catch((e) => {
                   if (e.response.status == 422) {
-                    this.$swal.fire({ icon: "error", text: e.response.data.message });
+                    this.$swal.fire({ icon: "error", text: e.response.data.message, timer: 3000, timerProgressBar: true });
                   }
                 });
             }
