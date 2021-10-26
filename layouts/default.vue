@@ -2,7 +2,6 @@
   <div :dir="$dir()">
     <!-- <components-header-alert/> -->
     <layout-default-header></layout-default-header>
-    <componentsQRCodeReaderModal v-if="!getTable" />
     <main>
       <Nuxt />
     </main>

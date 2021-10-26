@@ -51,6 +51,7 @@
         </div>
       </div>
     </div>
+    <componentsQRCodeReaderModal v-if="!getTable" />
   </div>
 </template>
 
@@ -130,7 +131,7 @@
           // order
           this.$axios
             .post("/api/orders/store", {
-              username: userName != "" ? userName : "guest",
+              username: userName != "" && userName != undefined ? userName : "guest",
               table: tableNumber,
               ip: userIP,
               products: formattedCart,
@@ -139,7 +140,7 @@
               (r) => this.emptyCart(),
               // check if the order is done then show it
               this.$swal({
-                title: this.$i18n.locale == "en" ? `Woow dear ${userName != "" ? userName : "guest"},` : `واااو عزيزي ${userName != "" ? userName : "العميل"},`,
+                title: this.$i18n.locale == "en" ? `Wow dear ${userName != "" && userName != undefined ? userName : "guest"},` : `واااو عزيزي ${userName != "" && userName != undefined ? userName : "العميل"},`,
                 text: this.$i18n.locale == "en" ? `Your order has been made successfully!` : ".تم تنفيذ طلبك بنجاح وسيتم تحضيره في أسرع وقت",
                 //icon: 'success',
                 button: this.$i18n.locale == "en" ? "Done" : "حسناً",

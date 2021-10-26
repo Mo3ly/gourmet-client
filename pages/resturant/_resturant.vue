@@ -49,11 +49,12 @@
         <NuxtChild :key="$route.params.resturant" />
       </main>
     </div>
+    <componentsQRCodeReaderModal v-if="!getTable" />
   </div>
 </template>
 
 <script>
-  import { mapActions } from "vuex";
+  import { mapGetters } from "vuex";
 
   export default {
     scrollToTop: true,
@@ -71,8 +72,8 @@
         });
       return { resturant };
     },
-    methods: {
-      ...mapActions(["setTable"]),
+    computed: {
+      ...mapGetters(["getTable"]),
     },
   };
 </script>

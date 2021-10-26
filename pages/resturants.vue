@@ -43,6 +43,7 @@
         </div>
       </div>
     </section>
+    <componentsQRCodeReaderModal v-if="!getTable" />
   </div>
 </template>
 
