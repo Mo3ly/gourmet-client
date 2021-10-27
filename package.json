@@ -21,9 +21,11 @@
     "nuxt-hammer": "^2.1.3",
     "nuxt-i18n": "^6.28.1",
     "pusher-js": "^7.0.3",
+    "vue-easy-slider": "^5.3.4",
     "vue-html-to-paper": "^1.4.3",
     "vue-qr": "^2.5.0",
     "vue-qrcode-reader": "^3.0.6",
+    "vue-silentbox": "^2.4.5",
     "vue-sweetalert2": "^5.0.2",
     "vue-swipeable-bottom-sheet": "0.0.5",
     "vue2-smooth-scroll": "^1.5.1"

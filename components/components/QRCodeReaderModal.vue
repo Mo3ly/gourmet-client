@@ -23,9 +23,22 @@
                 </p>
 
                 <div class="mt-4">
-                  <qrcode-stream :camera="camera" @decode="onDecode" @init="onInit">
+                  <div v-if="error" class="font-medium text-md bg-gray-100 w-full text-center p-2 text-red-800">{{ error }}</div>
+                  <div class="font-medium text-md text-black bg-gray-100 w-full text-center p-2" v-if="loading">
+                    Loading QR-Reader...
+                  </div>
+                  <qrcode-stream class="bg-white" v-if="!destroyed && !error" :camera="camera" :torch="torchActive" :track="paintOutline" @decode="onDecode" @init="onInit">
+                    <button v-if="!loading && !error" :class="torchNotSupported ? 'opacity-25' : null" class="rounded-md border left-2 top-2 justify-center border-gray-300 absolute shadow-sm p-1 bg-white text-base font-medium text-gray-700 hover:bg-gray-5" @click="torchActive = !torchActive" :disabled="torchNotSupported">
+                      <img :src="require(`~/assets/icons${icon}`)" alt="toggle torch" />
+                    </button>
+
+                    <button v-if="!loading && !error" class="rounded-md border left-12 top-2 justify-center border-gray-300 absolute shadow-sm p-1 opacity-25 bg-white text-base font-medium text-gray-700 hover:bg-gray-5" @click="reload">
+                      <img :src="require(`~/assets/icons/reload.svg`)" alt="reload camera" />
+                    </button>
+
                     <div v-if="validationSuccess" class="validation-success">
-                      <span class=" drop-shadow">Table: #{{ result }} has been detected</span>
+                      <!-- <span class=" drop-shadow">Table: #{{ result }} has been detected</span> -->
+                      <img :src="require(`~/assets/icons/checkmark.svg`)" alt="Checkmark" width="128px" />
                     </div>
 
                     <div v-if="validationFailure" class="validation-failure">
@@ -60,14 +73,24 @@
   export default {
     data() {
       return {
+        URL: "https://g-d.app/",
         show: true,
         isValid: undefined,
         camera: "auto",
         result: null,
+        torchActive: false,
+        torchNotSupported: false,
+        loading: false,
+        destroyed: false,
+        error: "",
       };
     },
 
     computed: {
+      icon() {
+        if (this.torchActive) return "/flash-off.svg";
+        else return "/flash-on.svg";
+      },
       validationPending() {
         return this.isValid === undefined && this.camera === "off";
       },
@@ -84,6 +107,23 @@
     methods: {
       ...mapActions(["setTable"]),
 
+      paintOutline(detectedCodes, ctx) {
+        for (const detectedCode of detectedCodes) {
+          const [firstPoint, ...otherPoints] = detectedCode.cornerPoints;
+
+          ctx.strokeStyle = "red";
+
+          ctx.beginPath();
+          ctx.moveTo(firstPoint.x, firstPoint.y);
+          for (const { x, y } of otherPoints) {
+            ctx.lineTo(x, y);
+          }
+          ctx.lineTo(firstPoint.x, firstPoint.y);
+          ctx.closePath();
+          ctx.stroke();
+        }
+      },
+
       containsAny(str, substrings) {
         for (var i = 0; i != substrings.length; i++) {
           var substring = substrings[i];
@@ -94,12 +134,46 @@
         return null;
       },
 
-      onInit(promise) {
-        promise.catch(console.error).then(this.resetValidationState);
+      async onInit(promise) {
+        this.loading = true;
+
+        try {
+          const { capabilities } = await promise;
+          this.torchNotSupported = !capabilities.torch;
+        } catch (error) {
+          if (error.name === "NotAllowedError") {
+            this.error = "ERROR: you need to grant camera access permission";
+          } else if (error.name === "NotFoundError") {
+            this.error = "ERROR: no camera on this device";
+          } else if (error.name === "NotSupportedError") {
+            this.error = "ERROR: secure context required (HTTPS, localhost)";
+          } else if (error.name === "NotReadableError") {
+            this.error = "ERROR: is the camera already in use?";
+          } else if (error.name === "OverconstrainedError") {
+            this.error = "ERROR: installed cameras are not suitable";
+          } else if (error.name === "StreamApiNotSupportedError") {
+            this.error = "ERROR: Stream API is not supported in this browser";
+          } else if (error.name === "InsecureContextError") {
+            this.error = "ERROR: Camera access is only permitted in secure context. Use HTTPS or localhost rather than HTTP.";
+          } else {
+            this.error = `ERROR: Camera error (${error.name})`;
+          }
+        } finally {
+          this.resetValidationState();
+          this.loading = false;
+        }
       },
 
       resetValidationState() {
         this.isValid = undefined;
+      },
+
+      async reload() {
+        this.destroyed = true;
+
+        await this.$nextTick();
+
+        this.destroyed = false;
       },
 
       async onDecode(content) {
@@ -107,7 +181,7 @@
 
         await this.timeout(1000);
 
-        if (content.startsWith("https://g-d.app/")) {
+        if (content.startsWith(this.URL)) {
           const tableNumber = content.split("=").pop();
           if (this.inRange(tableNumber, 1, 50)) {
             this.result = tableNumber;
@@ -179,5 +253,10 @@
   }
   .validation-failure {
     color: red;
+  }
+  .torch-button {
+    position: absolute;
+    left: 10px;
+    top: 10px;
   }
 </style>

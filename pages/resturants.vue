@@ -96,7 +96,7 @@
       return { resturants };
     },
     computed: {
-      ...mapGetters(["getResturants"]),
+      ...mapGetters(["getResturants", "getTable"]),
       resultQuery() {
         if (this.searchQuery) {
           return this.resturants.filter((item) => {

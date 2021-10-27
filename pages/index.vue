@@ -1,40 +1,53 @@
 <template>
   <div>
-    <!-- Banner -->
-    <div class="relative overflow-hidden">
-      <div class="mx-auto">
-        <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-xl lg:w-full lg:pb-28 xl:pb-32">
-          <main class="mt-10 mx-auto max-w-5xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-            <div class="sm:text-center lg:text-left animate__animated animate__bounceInLeft animate__delay-1s">
-              <h1 class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
-                <span class="block text-gray-900 dark:text-gray-100 xl:inline">{{ $t("home.landing_title") }}</span>
-                <span class="block bg-clip-text text-transparent bg-gradient-to-r font-flower from-pink-500 to-pink-300 xl:inline">{{ $t("home.landing_title2") }}</span>
-              </h1>
-              <p class="mt-3 text-base dark:text-white  text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                {{ $t("home.landing_desc") }}
-              </p>
-              <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                <div class="rounded-md shadow">
-                  <a href="#map-keys" class="w-full flex items-center justify-center px-8 py-3 border font-flower border-transparent text-base font-medium rounded-md animate-pulse text-white bg-pink-600 hover:bg-pink-700 md:py-4 md:text-lg md:px-10" v-smooth-scroll>
-                    {{ $t("home.discover_btn") }}
-                  </a>
-                </div>
-                <div class="mt-3 sm:mt-0 sm:ms-3">
-                  <NuxtLink :to="localePath('book')" class="w-full font-flower flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-pink-700 bg-pink-100 hover:bg-pink-200 md:py-4 md:text-lg md:px-10">
-                    <span class="flex h-3 w-3">
-                      <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
-                    </span>
-                    &nbsp; {{ $t("home.book_btn") }}
-                  </NuxtLink>
+    <!-- -->
+    <div class="relative bg-white">
+      <div class="absolute inset-x-0 bottom-0">
+        <svg viewBox="0 0 224 12" fill="currentColor" class="w-full -mb-1 text-white" preserveAspectRatio="none">
+          <path d="M0,0 C48.8902582,6.27314026 86.2235915,9.40971039 112,9.40971039 C137.776408,9.40971039 175.109742,6.27314026 224,0 L224,12.0441132 L0,12.0441132 L0,0 Z"></path>
+        </svg>
+      </div>
+
+      <!-- Banner -->
+      <div class="relative overflow-hidden">
+        <div class="mx-auto">
+          <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-xl lg:w-full lg:pb-28 xl:pb-32">
+            <main class="mt-10 mx-auto max-w-5xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+              <div class="sm:text-center lg:text-left animate__animated animate__bounceInLeft animate__delay-1s">
+                <h1 class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
+                  <span class="relative inline-block px-2">
+                    <div class="absolute inset-0 transform -skew-x-12 bg-pink-400"></div>
+                    <span class="relative text-white">{{ $t("home.landing_title") }}</span>
+                  </span>
+                  <!-- <span class="block text-gray-900 dark:text-gray-100 xl:inline">{{ $t("home.landing_title") }}</span> -->
+                  <span class="block bg-clip-text text-transparent bg-gradient-to-r font-flower from-pink-500 to-pink-300 xl:inline">{{ $t("home.landing_title2") }}</span>
+                </h1>
+                <p class="mt-3 text-base dark:text-white  text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                  {{ $t("home.landing_desc") }}
+                </p>
+                <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                  <div class="rounded-md shadow">
+                    <a href="#map-keys" class="w-full flex items-center justify-center px-8 py-3 border font-flower border-transparent text-base font-medium rounded-md animate-pulse text-white bg-pink-600 hover:bg-pink-700 md:py-4 md:text-lg md:px-10" v-smooth-scroll>
+                      {{ $t("home.discover_btn") }}
+                    </a>
+                  </div>
+                  <div class="mt-3 sm:mt-0 sm:ms-3">
+                    <NuxtLink :to="localePath('book')" class="w-full font-flower flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-pink-700 bg-pink-100 hover:bg-pink-200 md:py-4 md:text-lg md:px-10">
+                      <span class="flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
+                      </span>
+                      &nbsp; {{ $t("home.book_btn") }}
+                    </NuxtLink>
+                  </div>
                 </div>
               </div>
-            </div>
-          </main>
+            </main>
+          </div>
         </div>
-      </div>
-      <div class="lg:absolute lg:inset-y-0 rtl-map lg:w-1/2 -transform -scale-100">
-        <img class="animate__animated animate__jackInTheBox animate__delay-2s " src="~/static/images/layout/gd-map.png" alt=" gourmet map" />
+        <div class="lg:absolute lg:inset-y-0 rtl-map lg:w-1/2 -transform -scale-100">
+          <img class="animate__animated animate__jackInTheBox animate__delay-2s " src="~/static/images/layout/gd-map.png" alt=" gourmet map" />
+        </div>
       </div>
     </div>
 
@@ -47,6 +60,12 @@
         </div>
       </div>
     </div> -->
+
+    <!-- sliders -->
+    <div>
+      <components-rateModal />
+      <!-- <components-gallery /> -->
+    </div>
 
     <!-- Resturants -->
     <section id="map-keys" class="text-gray-600 body-font">

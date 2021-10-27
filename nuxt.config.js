@@ -80,6 +80,8 @@ export default {
     "~/plugins/html-to-paper.js",
     "~/plugins/directives",
     "~/plugins/qrcode",
+    "~/plugins/slient-box",
+    "~/plugins/easy-slider",
     { src: "@/plugins/qrcode-reader.js", mode: "client" },
     "~/plugins/scroll-behaviour",
   ],
