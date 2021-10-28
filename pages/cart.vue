@@ -72,7 +72,7 @@
       //     this.currentTable = localStorage.table
     },
     methods: {
-      ...mapActions(["deleteCartItem", "emptyCart"]),
+      ...mapActions(["deleteCartItem", "emptyCart", "setTable"]),
       inRange(x, min, max) {
         return (x - min) * (x - max) <= 0;
       },
@@ -138,7 +138,8 @@
             })
             .then(
               (r) => this.emptyCart(),
-              // check if the order is done then show it
+              // check if the order is done then show it -> send success message from server before you show it
+              this.setTable(tableNumber),
               this.$swal({
                 title: this.$i18n.locale == "en" ? `Wow dear ${userName != "" && userName != undefined ? userName : "guest"},` : `واااو عزيزي ${userName != "" && userName != undefined ? userName : "العميل"},`,
                 text: this.$i18n.locale == "en" ? `Your order has been made successfully!` : ".تم تنفيذ طلبك بنجاح وسيتم تحضيره في أسرع وقت",

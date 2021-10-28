@@ -1,7 +1,7 @@
 <template>
-  <div class="max-w-screen-sm mx-auto font-body">
-    <section id="root" class=" bg-white rounded-lg p-8 shadow-lg m-5">
-      <section id="silentbox-gallery">
+  <div class="max-w-screen-lg mx-auto font-body">
+    <section class=" bg-white rounded-lg p-8 shadow-lg m-5">
+      <section>
         <h2 class="text-3xl font-bold mb-2">Gallery</h2>
         <p class="font-light mb-3">Items could be merged into groups that make galleries.</p>
         <silent-box :gallery="gallery"></silent-box>
@@ -16,57 +16,51 @@
       return {
         gallery: [
           {
-            src: "https://silentbox.rocek.dev/images/image001.jpg",
-            description: "Star Night Sky Ravine by Mark Basarab, from Unsplash.",
-            alt: "Blue starry night photo.",
+            src: "https://www.g-d.qa/wp-content/uploads/2021/07/gallery_new1.jpg",
+            description: "GD Gallery Desc.",
+            alt: "GD Gallery.",
             thumbnailWidth: "220px",
           },
           {
-            src: "https://silentbox.rocek.dev/images/image002.jpg",
-            description: "Corno Nero, Italy by Luca Zanon, from Unsplash.",
-            alt: "Landscape photo of mountain with fog.",
+            src: "https://www.g-d.qa/wp-content/uploads/2021/07/gallery_new2.jpg",
+            description: "GD Gallery Desc.",
+            alt: "GD Gallery.",
             thumbnailWidth: "220px",
           },
           {
-            src: "https://silentbox.rocek.dev/images/image003.jpg",
-            description: "Remote forest path in Gävle, Sweden by Geran de Klerk, from Unsplash.",
-            alt: "Low angle photo of pine trees.",
+            src: "https://www.g-d.qa/wp-content/uploads/2021/07/gallery_new3.jpg",
+            description: "GD Gallery Desc.",
+            alt: "GD Gallery.",
             thumbnailWidth: "220px",
           },
           {
-            src: "https://silentbox.rocek.dev/images/image001.jpg",
-            description: "Star Night Sky Ravine by Mark Basarab, from Unsplash.",
-            alt: "Blue starry night photo.",
+            src: "https://www.g-d.qa/wp-content/uploads/2021/07/gallery_new4.jpg",
+            description: "GD Gallery Desc.",
+            alt: "GD Gallery.",
             thumbnailWidth: "220px",
           },
           {
-            src: "https://silentbox.rocek.dev/images/image002.jpg",
-            description: "Corno Nero, Italy by Luca Zanon, from Unsplash.",
-            alt: "Landscape photo of mountain with fog.",
+            src: "https://www.g-d.qa/wp-content/uploads/2021/07/gallery_new5.jpg",
+            description: "GD Gallery Desc.",
+            alt: "GD Gallery.",
             thumbnailWidth: "220px",
           },
           {
-            src: "https://silentbox.rocek.dev/images/image003.jpg",
-            description: "Remote forest path in Gävle, Sweden by Geran de Klerk, from Unsplash.",
-            alt: "Low angle photo of pine trees.",
+            src: "https://www.g-d.qa/wp-content/uploads/2021/07/gallery_new6.jpg",
+            description: "GD Gallery Desc.",
+            alt: "GD Gallery.",
             thumbnailWidth: "220px",
           },
           {
-            src: "https://silentbox.rocek.dev/images/image001.jpg",
-            description: "Star Night Sky Ravine by Mark Basarab, from Unsplash.",
-            alt: "Blue starry night photo.",
+            src: "https://www.g-d.qa/wp-content/uploads/2021/07/gallery_new7.jpg",
+            description: "GD Gallery Desc.",
+            alt: "GD Gallery.",
             thumbnailWidth: "220px",
           },
           {
-            src: "https://silentbox.rocek.dev/images/image002.jpg",
-            description: "Corno Nero, Italy by Luca Zanon, from Unsplash.",
-            alt: "Landscape photo of mountain with fog.",
-            thumbnailWidth: "220px",
-          },
-          {
-            src: "https://silentbox.rocek.dev/images/image003.jpg",
-            description: "Remote forest path in Gävle, Sweden by Geran de Klerk, from Unsplash.",
-            alt: "Low angle photo of pine trees.",
+            src: "https://www.g-d.qa/wp-content/uploads/2021/07/gallery_new8.jpg",
+            description: "GD Gallery Desc.",
+            alt: "GD Gallery.",
             thumbnailWidth: "220px",
           },
         ],

@@ -33,9 +33,9 @@
               <h2 class="mt-6 text-3xl font-extrabold text-white tracking-tight sm:text-4.5xl font-display sm:leading-extra-tight">
                 Welcome to our new application!
               </h2>
-              <p class="mt-6 mx-auto max-w-2xl text-lg text-pink-100">Twice a month I share the best Tailwind templates, UI kits and components in <strong>my newsletter</strong>. <strong>14</strong> Tailwind hackers find it useful. I'd love you to join.</p>
+              <!-- <p class="mt-6 mx-auto max-w-2xl text-lg text-pink-100">Twice a month I share the best Tailwind templates, UI kits and components in <strong>my newsletter</strong>. <strong>14</strong> Tailwind hackers find it useful. I'd love you to join.</p> -->
             </div>
-            <form target="_blank" class="sm:mx-auto sm:max-w-lg sm:flex">
+            <!-- <form target="_blank" class="sm:mx-auto sm:max-w-lg sm:flex">
               <div class="relative w-full h-14 bg-white rounded-full max-w-xl lg:max-w-none mx-auto">
                 <input class="rounded-full w-full h-14 bg-transparent py-0 sm:pl-6 pl-5 pr-16 sm:pr-32 outline-none border-2 border-gray-100 shadow-md hover:border-0 hover:ring-0 hover:outline-none focus:ring-pink-200 focus:border-pink-200" data-newsletter-target="email" required="required" placeholder="Enter your email" autocomplete="email" type="email" name="member[email]" id="member[email]" />
                 <button type="submit" class="inline-flex items-center h-12 absolute right-1 top-1 outline-none bg-pink-600 text-white p-4 sm:py-2 sm:px-6 rounded-r-full rounded-bl-full sm:rounded-full text-sm transition duration-150 sm:text-base sm:font-medium hover:bg-pink-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
@@ -49,7 +49,7 @@
                   </span>
                 </button>
               </div>
-            </form>
+            </form> -->
           </div>
         </div>
       </div>

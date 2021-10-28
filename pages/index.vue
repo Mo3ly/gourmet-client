@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- -->
     <div class="relative bg-white">
       <div class="absolute inset-x-0 bottom-0">
         <svg viewBox="0 0 224 12" fill="currentColor" class="w-full -mb-1 text-white" preserveAspectRatio="none">
@@ -64,7 +63,85 @@
     <!-- sliders -->
     <div>
       <components-rateModal />
-      <!-- <components-gallery /> -->
+    </div>
+
+    <!-- How to order -->
+    <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+      <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+        <div>
+          <p class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-pink-900 uppercase rounded-full bg-pink-200">
+            How to
+          </p>
+        </div>
+        <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+          <span class="relative inline-block">
+            <svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block">
+              <defs>
+                <pattern id="d0d83814-78b6-480f-9a5f-7f637616b267" x="0" y="0" width=".135" height=".30">
+                  <circle cx="1" cy="1" r=".7"></circle>
+                </pattern>
+              </defs>
+              <rect fill="url(#d0d83814-78b6-480f-9a5f-7f637616b267)" width="52" height="24"></rect>
+            </svg>
+            <span class="relative">Make</span>
+          </span>
+          an order
+        </h2>
+      </div>
+      <div class="relative grid gap-8 row-gap-5 mb-8 md:row-gap-8 lg:grid-cols-4 sm:grid-cols-2">
+        <div class="absolute inset-0 flex items-center justify-center sm:hidden lg:flex">
+          <div class="w-px h-full bg-gray-300 lg:w-full lg:h-px"></div>
+        </div>
+        <div class="p-5 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2">
+          <div class="flex items-center justify-between mb-2">
+            <p class="text-lg font-bold leading-5">Select your meal</p>
+            <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-deep-purple-accent-400 bg-pink-50">
+              1
+            </p>
+          </div>
+          <p class="text-sm text-gray-900">
+            Select your dishes from a variety of high quality restuants in our food court.
+          </p>
+        </div>
+        <div class="p-5 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2">
+          <div class="flex items-center justify-between mb-2">
+            <p class="text-lg font-bold leading-5">Which table?</p>
+            <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-deep-purple-accent-400 bg-pink-50">
+              2
+            </p>
+          </div>
+          <p class="text-sm text-gray-900">
+            Tell the system the table number by scannig your table's barcode.
+          </p>
+        </div>
+        <div class="p-5 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2">
+          <div class="flex items-center justify-between mb-2">
+            <p class="text-lg font-bold leading-5">Cart</p>
+            <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-deep-purple-accent-400 bg-pink-50">
+              3
+            </p>
+          </div>
+          <p class="text-sm text-gray-900">
+            Place your order located in the Cart after entering your name and table number.
+          </p>
+        </div>
+        <div class="p-5 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2">
+          <div class="flex items-center justify-between mb-2">
+            <p class="text-lg font-bold leading-5">Congrats</p>
+            <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-deep-purple-accent-400 bg-pink-50">
+              4
+            </p>
+          </div>
+          <p class="text-sm text-gray-900">
+            Your order has been placed and will be served to you as fast as possible.
+          </p>
+        </div>
+      </div>
+      <div class="text-center">
+        <nuxt-link :to="localePath('resturants')" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">
+          View Resturants
+        </nuxt-link>
+      </div>
     </div>
 
     <!-- Resturants -->
