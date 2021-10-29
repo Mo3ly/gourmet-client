@@ -1,67 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Tajawal&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Handlee&family=Tajawal&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Cairo&display=swap"); */
 
 @media print {
   @page {
-    size: landscape
+    size: landscape;
   }
 }
 
 html {
-    font-family: 'Cairo', sans-serif !important;
-    _font-family: 'Handlee', cursive, 'Tajawal', sans-serif;
-    _font-family: 'Raleway', sans-serif, 'Tajawal', sans-serif;
-    /* background-color: #ffffff; */
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    
-    @apply  select-none outline-none
+  font-family: "Montserrat", sans-serif, "Tajawal", sans-serif !important;
+  /* _font-family: "Cairo", sans-serif !important;
+  _font-family: "Handlee", cursive, "Tajawal", sans-serif;
+  _font-family: "Raleway", sans-serif, "Tajawal", sans-serif; */
+  /* background-color: #ffffff; */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  @apply select-none outline-none;
 }
 
 /* Scrollbar style */
 html.dark-mode::-webkit-scrollbar {
-    background: rgba(53, 53, 53, 1);
-    height: 20px;
-    width: 12px;
+  background: rgba(53, 53, 53, 1);
+  height: 20px;
+  width: 12px;
 }
 html.dark-mode::-webkit-scrollbar-track {
-    background: rgba(53, 53, 53, 1);
-    padding: 4px !important;
+  background: rgba(53, 53, 53, 1);
+  padding: 4px !important;
 }
 html.dark-mode::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 0px !important;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 0px !important;
 }
 html.dark-mode::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.3);
 }
-  
+
 html.light-mode::-webkit-scrollbar {
-    background: rgb(216, 216, 216);
-    height: 20px;
-    width: 12px;
+  background: rgb(216, 216, 216);
+  height: 20px;
+  width: 12px;
 }
 html.light-mode::-webkit-scrollbar-track {
-    background-color: rgb(240, 240, 240);
-    padding: 4px;
+  background-color: rgb(240, 240, 240);
+  padding: 4px;
 }
 html.light-mode::-webkit-scrollbar-thumb {
-    background: rgba(100, 100, 100, 0.2);
-    border-radius: 0px;
+  background: rgba(100, 100, 100, 0.2);
+  border-radius: 0px;
 }
 html.light-mode::-webkit-scrollbar-thumb:hover {
-    background: rgba(100, 100, 100, 0.3);
+  background: rgba(100, 100, 100, 0.3);
 }
 
 /* Patterns */
-.pattern-bg-typo{
-    background-image: url("~/assets/images/patterns/topography.svg");
+.pattern-bg-typo {
+  background-image: url("~/assets/images/patterns/topography.svg");
 }
 
-
-.pattern-bg-food{
-    background-image: url("~/assets/images/patterns/food.svg");
+.pattern-bg-food {
+  background-image: url("~/assets/images/patterns/food.svg");
 }
 
-.pattern-gd{
-    background-image: url("~/assets/images/patterns/gd-pattern.png");
+.pattern-gd {
+  background-image: url("~/assets/images/patterns/gd-pattern.png");
 }
