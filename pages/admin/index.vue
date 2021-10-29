@@ -18,7 +18,7 @@
             </div>
 
             <div class="mx-5">
-              <h4 class="text-2xl font-semibold text-gray-700">0</h4>
+              <h4 class="text-2xl font-semibold text-gray-700">{{ dashboardData != null ? dashboardData.TotalBookings : 0 }}</h4>
               <div class="text-gray-500">Total Bookings</div>
             </div>
           </div>
@@ -34,7 +34,7 @@
               </svg>
             </div>
             <div class="mx-5">
-              <h4 class="text-2xl font-semibold text-gray-700">0</h4>
+              <h4 class="text-2xl font-semibold text-gray-700">{{ dashboardData != null ? dashboardData.TotalOrders : 0 }}</h4>
               <div class="text-gray-500">Total Orders</div>
             </div>
           </div>
@@ -49,7 +49,7 @@
               </svg>
             </div>
             <div class="mx-5">
-              <h4 class="text-2xl font-semibold text-gray-700">0</h4>
+              <h4 class="text-2xl font-semibold text-gray-700">{{ dashboardData != null ? dashboardData.TotalProducts : 0 }}</h4>
               <div class="text-gray-500">Available Products</div>
             </div>
           </div>
@@ -57,9 +57,471 @@
       </div>
     </div>
 
-    <h3 class="text-gray-700 text-3xl font-bold my-4">Latest booking(s)</h3>
-    <!-- table -->
-    <h3 class="text-gray-700 text-3xl font-bold my-4">Latest order(s)</h3>
-    <!-- table -->
+    <div class="container">
+      <div class="py-8 mt-8">
+        <div class="flex flex-row mb-1 sm:mb-0 justify-between w-full">
+          <h2 class="text-2xl text-gray-700 font-semibold leading-tight">
+            Latest bookings
+          </h2>
+          <div class="text-end">
+            <button @click="$router.app.refresh()" class="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-200" type="submit">
+              Refresh
+            </button>
+          </div>
+        </div>
+        <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+          <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+            <table class="min-w-full leading-normal">
+              <thead>
+                <tr>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Booking
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Name
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Email
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Phone
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Date
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Notes
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                </tr>
+              </thead>
+              <tbody v-if="dashboardData != null" class="bg-white">
+                <tr v-for="booking in dashboardData.LatestBookings" :key="booking.id">
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="flex items-center">
+                      <div class="text-sm leading-5 font-medium text-gray-900">#{{ booking.id }}</div>
+                    </div>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    {{ booking.name }}
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    {{ booking.email }}
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    {{ booking.phone }}
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    {{ booking.date }}
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    {{ booking.notes }}
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <span :class="[booking.status == 'delivered' ? 'bg-gray-100 text-gray-800' : booking.status == 'seen' ? 'bg-yellow-100 text-yellow-800' : booking.status == 'confirmed' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800']" class="px-2 uppercase inline-flex text-xs leading-5 font-semibold rounded-full">{{ booking.status }}</span>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="flex item-center justify-center">
+                      <div @click="bookingEdit(booking)" class="w-4 mr-2 transform hover:text-pink-500 hover:scale-110">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                      </div>
+                      <div @click="bookingDelete(booking)" class="w-4 mr-2 transform hover:text-pink-500 hover:scale-110">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- latest orders table -->
+    <div class="container">
+      <div class="py-8">
+        <div class="flex flex-row mb-1 sm:mb-0 justify-between w-full">
+          <h2 class="text-2xl text-gray-700 font-semibold leading-tight">
+            Latest Orders
+          </h2>
+          <div class="text-end">
+            <button @click="$router.app.refresh()" class="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-200" type="submit">
+              Refresh
+            </button>
+          </div>
+        </div>
+        <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+          <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+            <table class="min-w-full leading-normal">
+              <thead>
+                <tr>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Order
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Total
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Products
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Time
+                  </th>
+                  <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                </tr>
+              </thead>
+              <tbody v-if="dashboardData != null" class="bg-white">
+                <tr v-for="order in dashboardData.LatestOrders" :key="order.id">
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0 h-10 w-10 bg-gray-300 text-gray-700 text-center text-sm rounded">Table {{ order.table }}</div>
+                      <div class="ml-4">
+                        <div class="text-sm leading-5 font-medium text-gray-900">#{{ order.id }}</div>
+                        <div class="text-sm leading-5 text-gray-500">{{ order.name }}</div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="text-sm leading-5 text-gray-900">
+                      <span v-if="order.products.length > 0">{{ order.products.map((el) => parseInt(el.total_price)).reduce((a, b) => a + b) }} {{ $t("common.currency") }}</span>
+                      <span v-else>0</span>
+                    </div>
+                    <div class="text-sm leading-5 text-gray-500">
+                      <span v-if="order.products.length > 0">{{ order.products.map((el) => parseInt(el.quantity)).reduce((a, b) => a + b) }}</span>
+                      <span v-else>0</span> items
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div v-if="order.products.length > 0" class="flex items-center justify-center">
+                      <img v-for="product in order.products.slice(0, 5)" :key="product.id" :title="`(${product.data.resturant}) ${product.quantity}x ${product.data.name_en} - ${product.total_price} ${$t('common.currency')} - Notes: ${product.notes == null ? 'Nothing' : product.notes}`" class="w-8 h-8 rounded-full border-gray-200 border -m-1 transform hover:scale-125" :src="product.data.image" />
+                      <div v-if="order.products.length > 5" class="w-8 h-8 rounded-full border-gray-200 border -m-1 transform hover:scale-125 text-xs font-semibold bg-gray-200 text-gray-800 text-center  flex items-center justify-center">+{{ order.products.length - 5 }}</div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <span :class="[order.status == 'received' ? 'bg-gray-100 text-gray-800' : order.status == 'approved' ? 'bg-yellow-100 text-yellow-800' : order.status == 'done' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800']" class="px-2 uppercase inline-flex text-xs leading-5 font-semibold rounded-full">{{ order.status }}</span>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    {{ order.date }}
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="flex item-center justify-center">
+                      <div v-if="order.products.length > 0" @click="orderDetails(order)" class="w-4 mr-2 transform hover:text-pink-500 hover:scale-110">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                      </div>
+                      <div @click="orderEdit(order)" class="w-4 mr-2 transform hover:text-pink-500 hover:scale-110">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                      </div>
+                      <div @click="orderDelete(order)" class="w-4 mr-2 transform hover:text-pink-500 hover:scale-110">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- users table 
+    <div class="container">
+      <div class="py-8">
+        <div class="flex flex-row mb-1 sm:mb-0 justify-between w-full">
+          <h2 class="text-2xl text-gray-700 font-semibold leading-tight">
+            Users
+          </h2>
+          <div class="text-end">
+            <form class="flex flex-col md:flex-row w-3/4 md:w-full max-w-sm md:space-x-3 space-y-3 md:space-y-0 justify-center">
+              <div class=" relative ">
+                <input type="text" id='"form-subscribe-Filter' class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="name" />
+              </div>
+              <button class="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-200" type="submit">
+                Filter
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+          <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+            <table class="min-w-full leading-normal">
+              <thead>
+                <tr>
+                  <th scope="col" class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
+                    User
+                  </th>
+                  <th scope="col" class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
+                    Role
+                  </th>
+                  <th scope="col" class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
+                    Created at
+                  </th>
+                  <th scope="col" class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
+                    status
+                  </th>
+                  <th scope="col" class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <div class="flex items-center">
+                      <div class="ml-3">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                          Jean marc
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <p class="text-gray-900 whitespace-no-wrap">
+                      Admin
+                    </p>
+                  </td>
+                  <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <p class="text-gray-900 whitespace-no-wrap">
+                      12/09/2020
+                    </p>
+                  </td>
+                  <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                      <span aria-hidden="true" class="absolute inset-0 bg-green-200 opacity-50 rounded-full"> </span>
+                      <span class="relative">
+                        active
+                      </span>
+                    </span>
+                  </td>
+                  <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="px-5 bg-white py-5 flex flex-col xs:flex-row items-center xs:justify-between">
+              <div class="flex items-center">
+                <button type="button" class="w-full p-4 border text-base rounded-l-xl text-gray-600 bg-white hover:bg-gray-100">
+                  <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z"></path>
+                  </svg>
+                </button>
+                <button type="button" class="w-full px-4 py-2 border-t border-b text-base text-indigo-500 bg-white hover:bg-gray-100 ">
+                  1
+                </button>
+                <button type="button" class="w-full px-4 py-2 border text-base text-gray-600 bg-white hover:bg-gray-100">
+                  2
+                </button>
+                <button type="button" class="w-full px-4 py-2 border-t border-b text-base text-gray-600 bg-white hover:bg-gray-100">
+                  3
+                </button>
+                <button type="button" class="w-full px-4 py-2 border text-base text-gray-600 bg-white hover:bg-gray-100">
+                  4
+                </button>
+                <button type="button" class="w-full p-4 border-t border-b border-r text-base  rounded-r-xl text-gray-600 bg-white hover:bg-gray-100">
+                  <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>-->
   </div>
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+        dashboardData: null,
+      };
+    },
+    methods: {
+      async bookingEdit(booking) {
+        const { value: bookingStatus } = await this.$swal.fire({
+          title: "Select booking status",
+          input: "select",
+          inputOptions: {
+            delivered: "delivered",
+            seen: "seen",
+            cancelled: "cancelled",
+            confirmed: "confirmed",
+          },
+          inputPlaceholder: "Select a status",
+          showCancelButton: true,
+          inputValidator: (result) => {
+            return !result && "You have to select a status";
+          },
+        });
+
+        if (bookingStatus) {
+          booking.status = bookingStatus;
+          this.$axios
+            .post("/api/bookings/update", {
+              booking_id: booking.id,
+              status: bookingStatus,
+            })
+            .then((r) => {
+              if (r.data.success) {
+                this.$swal.fire(`Booking #${booking.id} status has chaged to: ${bookingStatus}`);
+                this.$router.app.refresh();
+              }
+            })
+            .catch((e) => {
+              if (e.response.status == 422) {
+                this.$swal.fire({ icon: "error", text: e.response.data.message, timer: 3000, timerProgressBar: true });
+              }
+            });
+        }
+      },
+
+      bookingDelete(booking) {
+        this.$swal
+          .fire({
+            title: `Do you want to delete this booking #${booking.id}?`,
+            showCancelButton: true,
+            confirmButtonText: "Delete",
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+              this.$axios
+                .post("/api/bookings/destroy", {
+                  booking_id: booking.id,
+                })
+                .then((r) => {
+                  if (r.data.success) {
+                    this.$swal.fire({ icon: "success", text: r.data.success, timer: 3000, timerProgressBar: true });
+                    this.$router.app.refresh();
+                  }
+                })
+                .catch((e) => {
+                  if (e.response.status == 422) {
+                    this.$swal.fire({ icon: "error", text: e.response.data.message, timer: 3000, timerProgressBar: true });
+                  }
+                });
+            }
+          });
+      },
+
+      orderDetails(order) {
+        let data = "";
+        order.products.forEach((el) => (data += `<div class="flex items-center text-base space-s-2 mb-3"><img class="h-16 w-16 rounded-md" src="${el.data.image}"/> <span class="text-pink-500 text-sm">${el.quantity}x</span> <b>${el.data.name_en}</b> <span class="text-xs">(${el.data.resturant})</span> <b>${el.total_price} QR</b>  <span class="text-sm pl-3"> NOTES: ${el.notes == null ? "nothing" : el.notes} </span></div>`));
+        data += ` Total: <b>${order.products.map((el) => parseInt(el.total_price)).reduce((a, b) => a + b)} QR</b> . <span class="px-2 bg-gray-200 text-gray-800 text-center text-base rounded-full">${order.products.map((el) => parseInt(el.quantity)).reduce((a, b) => a + b)} items </span>`;
+        this.$swal.fire({
+          title: `Order #${order.id} . <span class="text-base text-pink-500">Table: ${order.table}</span>`,
+          html: data,
+        });
+      },
+
+      async orderEdit(order) {
+        const { value: orderStatus } = await this.$swal.fire({
+          title: "Select order status",
+          input: "select",
+          inputOptions: {
+            received: "received",
+            approved: "approved",
+            cancelled: "cancelled",
+            done: "done",
+          },
+          inputPlaceholder: "Select a status",
+          showCancelButton: true,
+          inputValidator: (result) => {
+            return !result && "You have to select a status";
+          },
+        });
+
+        if (orderStatus) {
+          order.status = orderStatus;
+          this.$axios
+            .post("/api/orders/update", {
+              order_id: order.id,
+              status: orderStatus,
+            })
+            .then((r) => {
+              if (r.data.success) {
+                this.$swal.fire(`Order #${order.id} status has chaged to: ${orderStatus}`);
+                this.$router.app.refresh();
+              }
+            })
+            .catch((e) => {
+              if (e.response.status == 422) {
+                this.$swal.fire({ icon: "error", text: e.response.data.message, timer: 3000, timerProgressBar: true });
+              }
+            });
+        }
+      },
+
+      orderDelete(order) {
+        this.$swal
+          .fire({
+            title: `Do you want to delete this order #${order.id}?`,
+            showCancelButton: true,
+            confirmButtonText: "Delete",
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+              this.$axios
+                .post("/api/orders/destroy", {
+                  order_id: order.id,
+                })
+                .then((r) => {
+                  if (r.data.success) {
+                    this.$swal.fire({ icon: "success", text: r.data.success, timer: 3000, timerProgressBar: true });
+                    this.$router.app.refresh();
+                  }
+                })
+                .catch((e) => {
+                  if (e.response.status == 422) {
+                    this.$swal.fire({ icon: "error", text: e.response.data.message, timer: 3000, timerProgressBar: true });
+                  }
+                });
+            }
+          });
+      },
+    },
+    activated() {
+      if (this.$fetchState.timestamp <= Date.now() - 30000) {
+        this.$fetch();
+      }
+    },
+    async fetch() {
+      await this.$axios
+        .get("/api/admin/dashboard")
+        .then((response) => {
+          this.dashboardData = response.data;
+        })
+        .catch((e) => console.log(e));
+    },
+  };
+</script>
