@@ -45,9 +45,12 @@
 
             <tbody class="bg-white">
               <tr v-for="order in resultQuery" :key="order.id">
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                   <div class="flex items-center">
-                    <div class="flex-shrink-0 h-10 w-10 bg-gray-300 text-gray-700 text-center text-sm rounded">Table {{ order.table }}</div>
+                    <div class="flex-shrink-0 h-10 w-10 bg-gray-300 text-gray-700 text-center text-sm rounded">
+                      Table <br />
+                      {{ order.table }}
+                    </div>
                     <div class="ml-4">
                       <div class="text-sm leading-5 font-medium text-gray-900">#{{ order.id }}</div>
                       <div class="text-sm leading-5 text-gray-500">{{ order.name }}</div>
@@ -55,7 +58,7 @@
                   </div>
                 </td>
 
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                   <div class="text-sm leading-5 text-gray-900">
                     <span v-if="order.products.length > 0">{{ order.products.map((el) => parseInt(el.total_price)).reduce((a, b) => a + b) }} {{ $t("common.currency") }}</span>
                     <span v-else>0</span>
@@ -65,21 +68,21 @@
                     <span v-else>0</span> items
                   </div>
                 </td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                   <div v-if="order.products.length > 0" class="flex items-center justify-center">
                     <img v-for="product in order.products.slice(0, 5)" :key="product.id" :title="`(${product.data.resturant}) ${product.quantity}x ${product.data.name_en} - ${product.total_price} ${$t('common.currency')} - Notes: ${product.notes == null ? 'Nothing' : product.notes}`" class="w-8 h-8 rounded-full border-gray-200 border -m-1 transform hover:scale-125" :src="product.data.image" />
                     <div v-if="order.products.length > 5" class="w-8 h-8 rounded-full border-gray-200 border -m-1 transform hover:scale-125 text-xs font-semibold bg-gray-200 text-gray-800 text-center  flex items-center justify-center">+{{ order.products.length - 5 }}</div>
                   </div>
                 </td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                   <span :class="[order.status == 'received' ? 'bg-gray-100 text-gray-800' : order.status == 'approved' ? 'bg-yellow-100 text-yellow-800' : order.status == 'done' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800']" class="px-2 uppercase inline-flex text-xs leading-5 font-semibold rounded-full">{{ order.status }}</span>
                 </td>
 
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                   {{ order.date }}
                 </td>
 
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                   <div class="flex item-center justify-center">
                     <div v-if="order.products.length > 0" @click="orderDetails(order)" class="w-4 mr-2 transform hover:text-pink-500 hover:scale-110">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -168,9 +171,39 @@
     },
     methods: {
       orderDetails(order) {
-        let data = "";
-        order.products.forEach((el) => (data += `<div class="flex items-center text-base space-s-2 mb-3"><img class="h-16 w-16 rounded-md" src="${el.data.image}"/> <span class="text-pink-500 text-sm">${el.quantity}x</span> <b>${el.data.name_en}</b> <span class="text-xs">(${el.data.resturant})</span> <b>${el.total_price} QR</b>  <span class="text-sm pl-3"> NOTES: ${el.notes == null ? "nothing" : el.notes} </span></div>`));
-        data += ` Total: <b>${order.products.map((el) => parseInt(el.total_price)).reduce((a, b) => a + b)} QR</b> . <span class="px-2 bg-gray-200 text-gray-800 text-center text-base rounded-full">${order.products.map((el) => parseInt(el.quantity)).reduce((a, b) => a + b)} items </span>`;
+        let data = `
+              <table class="min-w-full leading-normal mb-6">
+                  <tbody>
+        `;
+
+        order.products.forEach(
+          (el) =>
+            (data += `
+            <tr class="text-gray-700">
+                <td class="border-b-2 p-4 dark:border-dark-5">
+                    <div class="text-xs mb-2">
+                      ${el.data.resturant}
+                    </div>
+                      <img class="rounded-md inline w-16 h-16" src="${el.data.image}"/> 
+                    <div>
+                      <span class="text-pink-500 text-sm">${el.quantity}x &nbsp; </span>
+                      <span class="text-sm font-bold">${el.data.name_en}</span> —
+                      <span class="text-sm font-bold text-pink-500">${el.total_price} QR</span>
+                    </div>
+                    <div>
+                      <span class="text-sm pl-3"> <b>NOTES:</b> ${el.notes == null ? "Nothing" : el.notes} </span>
+                    </div>
+                </td>
+            </tr>
+          `)
+        );
+
+        data += `
+              </tbody>
+            </table>
+          Total: <b>${order.products.map((el) => parseInt(el.total_price)).reduce((a, b) => a + b)} QR</b> . <span class="px-2 bg-gray-200 text-gray-800 text-center text-base rounded-full">${order.products.map((el) => parseInt(el.quantity)).reduce((a, b) => a + b)} items </span>
+        `;
+
         this.$swal.fire({
           title: `Order #${order.id} . <span class="text-base text-pink-500">Table: ${order.table}</span>`,
           html: data,

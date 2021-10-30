@@ -54,6 +54,19 @@ html.light-mode::-webkit-scrollbar-thumb:hover {
   background: rgba(100, 100, 100, 0.3);
 }
 
+/* Gallery */
+#silentbox-gallery {
+  @apply grid gap-8 mb-8 lg:grid-cols-3;
+}
+
+.silentbox-item {
+  @apply w-full h-56 mb-6 py-5 rounded shadow-lg md:h-64 xl:h-80;
+}
+
+.silentbox-item img {
+  @apply object-cover mx-auto max-w-full max-h-full rounded duration-300 transform rotate-6 hover:rotate-12;
+}
+
 /* Patterns */
 .pattern-bg-typo {
   background-image: url("~/assets/images/patterns/topography.svg");

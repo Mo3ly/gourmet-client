@@ -19,10 +19,10 @@ export const mutations = {
   setAllResturants: (state, resturants) => (state.allResturants = resturants),
   setProducts: (state, products) => (state.allProducts = products),
   setCartItem: (state, item) => state.cartItems.push(item),
-  updateCartItemQuantity: (state, itemData) => (state.cartItems.find((x) => x.id === itemData.id).quantity = itemData.quantity),
-  removeCartItem: (state, id) =>
+  updateCartItemQuantity: (state, itemData) => (state.cartItems.find((el) => el.id === itemData.id && el.notes === itemData.notes).quantity = itemData.quantity),
+  removeCartItem: (state, itemData) =>
     state.cartItems.splice(
-      state.cartItems.findIndex((el) => el.id === id),
+      state.cartItems.findIndex((el) => el.id === itemData.id && el.notes === itemData.notes),
       1
     ),
   emptyCartItems: (state) => (state.cartItems = []),
@@ -42,20 +42,21 @@ export const actions = {
   //     }
   //   },
   async addItemToCart({ state, commit }, cartItem) {
-    let alreadyAdded = state.cartItems.find((item) => item.id === cartItem.id);
+    let alreadyAdded = state.cartItems.find((item) => item.id === cartItem.id && item.notes === cartItem.notes);
 
     if (!alreadyAdded) await commit("setCartItem", cartItem);
     else
       await commit("updateCartItemQuantity", {
         id: cartItem.id,
         quantity: cartItem.quantity + alreadyAdded.quantity,
+        notes: cartItem.notes,
       });
   },
-  async updateCartItem({ state, commit }, itemData) {
+  async updateCartItem({ commit }, itemData) {
     await commit("updateCartItemQuantity", itemData);
   },
-  async deleteCartItem({ commit }, id) {
-    await commit("removeCartItem", id);
+  async deleteCartItem({ commit }, itemData) {
+    await commit("removeCartItem", itemData);
   },
   async setTable({ commit }, table) {
     await commit("setUserTable", table);

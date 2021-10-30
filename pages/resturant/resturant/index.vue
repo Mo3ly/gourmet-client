@@ -3,7 +3,7 @@
     <!-- Resturants navigation bar -->
     <div class="border-b dark:border-gray-500 dark:border-opacity-20 flow-root">
       <span v-if="showResturants" class=" h3 float-start font-bold text-gray-800 dark:text-gray-100 p-1">{{ $t("resturant.resturants") }}</span>
-      <button class="text-gray-500  float-end" @click="showResturants = !showResturants">
+      <button class="text-gray-500 float-end" @click="showResturants = !showResturants">
         <span v-if="showResturants">{{ $t("resturant.hide") }} <i class="gd-icons icon-minimal-up"></i></span>
         <span v-else>{{ $t("resturant.show") }} <i class="gd-icons icon-minimal-down"></i></span>
       </button>

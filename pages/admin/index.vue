@@ -435,9 +435,39 @@
       },
 
       orderDetails(order) {
-        let data = "";
-        order.products.forEach((el) => (data += `<div class="flex items-center text-base space-s-2 mb-3"><img class="h-16 w-16 rounded-md" src="${el.data.image}"/> <span class="text-pink-500 text-sm">${el.quantity}x</span> <b>${el.data.name_en}</b> <span class="text-xs">(${el.data.resturant})</span> <b>${el.total_price} QR</b>  <span class="text-sm pl-3"> NOTES: ${el.notes == null ? "nothing" : el.notes} </span></div>`));
-        data += ` Total: <b>${order.products.map((el) => parseInt(el.total_price)).reduce((a, b) => a + b)} QR</b> . <span class="px-2 bg-gray-200 text-gray-800 text-center text-base rounded-full">${order.products.map((el) => parseInt(el.quantity)).reduce((a, b) => a + b)} items </span>`;
+        let data = `
+              <table class="min-w-full leading-normal mb-6">
+                  <tbody>
+        `;
+
+        order.products.forEach(
+          (el) =>
+            (data += `
+            <tr class="text-gray-700">
+                <td class="border-b-2 p-4 dark:border-dark-5">
+                    <div class="text-xs mb-2">
+                      ${el.data.resturant}
+                    </div>
+                      <img class="rounded-md inline w-16 h-16" src="${el.data.image}"/> 
+                    <div>
+                      <span class="text-pink-500 text-sm">${el.quantity}x &nbsp; </span>
+                      <span class="text-sm font-bold">${el.data.name_en}</span> —
+                      <span class="text-sm font-bold text-pink-500">${el.total_price} QR</span>
+                    </div>
+                    <div>
+                      <span class="text-sm pl-3"> <b>NOTES:</b> ${el.notes == null ? "Nothing" : el.notes} </span>
+                    </div>
+                </td>
+            </tr>
+          `)
+        );
+
+        data += `
+              </tbody>
+            </table>
+          Total: <b>${order.products.map((el) => parseInt(el.total_price)).reduce((a, b) => a + b)} QR</b> . <span class="px-2 bg-gray-200 text-gray-800 text-center text-base rounded-full">${order.products.map((el) => parseInt(el.quantity)).reduce((a, b) => a + b)} items </span>
+        `;
+
         this.$swal.fire({
           title: `Order #${order.id} . <span class="text-base text-pink-500">Table: ${order.table}</span>`,
           html: data,
