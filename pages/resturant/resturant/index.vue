@@ -28,7 +28,7 @@
     </div>
 
     <!-- Menu mobile navigation bar -->
-    <div class="mt-2 lg:hidden overflow-y-none overflow-x-auto w-full sticky border-b dark:border-gray-500 dark:border-opacity-20 border-gray-200 menu-bar top-0 shadow-sm bg-white dark:bg-dark-surface">
+    <div class="mt-2 lg:hidden overflow-y-none overflow-x-auto w-full sticky border-b dark:border-gray-500 dark:border-opacity-20 border-gray-200 menu-bar top-0 shadow-sm bg-white dark:bg-gray-900">
       <div class="border-b border-opacity-0">
         <div v-if="resturant.categories.length" class="-mb-px flex px-4 space-s-8">
           <div v-for="category in resultQuery" :key="category.id">
@@ -58,17 +58,17 @@
         <!-- Products -->
         <div class="lg:col-span-2 menuContent" ref="menuContent">
           <!-- Mobile checkout button -->
-          <div v-if="getCartCount > 0" class="fixed bottom-0 left-0 m-auto lg:hidden w-full bg-gray-50 dark:bg-dark-surface p-2">
+          <div v-if="getCartCount > 0" class="fixed bottom-0 left-0 m-auto lg:hidden w-full bg-gray-50 dark:bg-gray-900 p-2">
             <nuxt-link :to="localePath('/cart')" :disabled="getCartCount < 1" class=" justify-center text-center block rounded-md border mb-3 border-transparent shadow-sm px-4 py-2 bg-pink-600 text-base font-medium text-white hover:bg-pink-700 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 w-full sm:text-sm">
-              {{ $t("cart.name") }} — {{ getCartTotalQuantity }} {{ $t("cart.item") }} &nbsp; <span class="text-pink-500 bg-white dark:bg-dark-surface rounded-full px-1 text-xs"> {{ getCartTotal }} {{ $t("common.currency") }} </span>
+              {{ $t("cart.name") }} — {{ getCartTotalQuantity }} {{ $t("cart.item") }} &nbsp; <span class="text-pink-500 bg-white dark:bg-gray-900 rounded-full px-1 text-xs"> {{ getCartTotal }} {{ $t("common.currency") }} </span>
             </nuxt-link>
           </div>
           <!-- Search bar -->
           <div class="pb-3 pt-4">
-            <div v-if="resturant.categories.length" class="bg-white  dark:bg-dark-surface flex items-center rounded-md shadow">
-              <input type="text" id="search" v-model="searchQuery" :placeholder="$t('common.search')" class="rounded-l-md w-full py-4 px-6 dark:bg-dark-surface dark:text-gray-100 text-gray-700 leading-tight border-none focus:outline-none focus:ring-0" autocomplete="off" />
+            <div v-if="resturant.categories.length" class="bg-white dark:bg-gray-900 flex items-center rounded-md shadow">
+              <input type="text" id="search" v-model="searchQuery" :placeholder="$t('common.search')" class="rounded-l-md w-full py-4 px-6 dark:bg-gray-900 dark:text-gray-100 text-gray-700 leading-tight border-none focus:outline-none focus:ring-0" autocomplete="off" />
               <div class="p-3">
-                <button @click="searchQuery != null ? (searchQuery = null) : null" class="bg-pink-500 text-white dark:bg-dark-surface  rounded-full p-2 hover:bg-pink-400 focus:outline-none w-7 h-7 flex items-center justify-center">
+                <button @click="searchQuery != null ? (searchQuery = null) : null" class="bg-pink-500 text-white dark:bg-gray-900  rounded-full p-2 hover:bg-pink-400 focus:outline-none w-7 h-7 flex items-center justify-center">
                   <i v-if="searchQuery" class="gd-icons icon-simple-remove"></i>
                   <i v-else class="gd-icons icon-zoom-split"></i>
                 </button>

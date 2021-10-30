@@ -1,7 +1,7 @@
 <template>
   <div>
     <header :class="$route.path === '/' || $route.path === '/ar' ? '' : 'border-b-2 dark:border-gray-500 dark:border-opacity-20'">
-      <div class="max-w-8xl mx-auto px-2 sm:px-6 lg:px-8 sticky top-0 left-0 right-0 z-30">
+      <div class="py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl sm:px-6 lg:px-8 sticky top-0 left-0 right-0 z-30">
         <div class="relative flex items-center justify-between h-16">
           <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <!-- Mobile menu button-->

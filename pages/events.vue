@@ -11,14 +11,14 @@
 
     <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <div class="flex flex-col mb-6 lg:justify-between lg:flex-row md:mb-8">
-        <h2 class="max-w-lg mb-5 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none md:mb-6 group">
+        <h2 class="max-w-lg mb-5 font-sans text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-none md:mb-6 group">
           <span class="inline-block mb-1 sm:mb-4">
             Events &<br class="hidden md:block" />
             Entertainment
           </span>
           <div class="h-1 ml-auto duration-300 origin-left transform bg-pink-400 scale-x-30 group-hover:scale-x-100"></div>
         </h2>
-        <p class="text-gray-700 lg:text-sm lg:max-w-md">
+        <p class="text-gray-700 dark:text-gray-500 lg:text-sm lg:max-w-md">
           "The secret of Happiness in Gourmet District is the food but we didn’t forget about the importance of entertainment. Music feeds the soul and the smile on your faces is our daily motivation. Gourmet District will be the live entertainment venue in Doha, when the city opens up safely. Keep checking us everyday to know what is new."
         </p>
       </div>

@@ -9,7 +9,7 @@
 
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
 
-        <div class="relative rounded-3xl px-6 py-10 bg-pink-600 overflow-hidden shadow-xl sm:px-12 sm:py-20 transition transform inline-block align-top max-w-3xl sm:align-middle" role="dialog" aria-modal="true" aria-labelledby="modal-headline" data-toggle-target="toggleable toggleArea" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:enter="ease-out duration-300" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+        <div class="relative rounded-3xl px-6 py-10 bg-pink-600 overflow-hidden shadow-xl sm:px-12 sm:py-20 transition transform inline-block align-top max-w-3xl sm:align-middle" role="dialog" aria-modal="true">
           <div class="absolute top-0 right-0 pt-4 pr-4">
             <button @click="show = !show" type="button" class="relative z-50 cursor-pointer bg-transparent rounded-md text-gray-300 hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-200 ring-offset-transparent" data-action="click->toggle#hide">
               <span class="sr-only">Close</span>

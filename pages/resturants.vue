@@ -7,8 +7,8 @@
       <template v-slot:content>
         <span>Choose your taste from a variety of top level restaurants.</span>
         <div class="pb-3 pt-4">
-          <div class="bg-white flex items-center rounded-md shadow">
-            <input type="text" id="search" v-model="searchQuery" :placeholder="$t('common.search')" class="rounded-l-md w-full py-4 px-6 text-gray-700 leading-tight border-none focus:outline-none focus:ring-0" autocomplete="off" />
+          <div class="bg-white dark:bg-gray-900  flex items-center rounded-md shadow">
+            <input type="text" id="search" v-model="searchQuery" :placeholder="$t('common.search')" class="rounded-l-md w-full py-4 px-6 text-gray-700 dark:bg-gray-900 leading-tight border-none focus:outline-none focus:ring-0" autocomplete="off" />
             <div class="p-3">
               <button @click="searchQuery != null ? (searchQuery = null) : null" class="bg-pink-500 text-white rounded-full p-2 hover:bg-pink-400 focus:outline-none w-7 h-7 flex items-center justify-center">
                 <i v-if="searchQuery" class="gd-icons icon-simple-remove"></i>

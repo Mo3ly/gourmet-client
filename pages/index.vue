@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="relative">
+    <div class="relative py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-6">
       <div class="absolute inset-x-0 bottom-0">
-        <svg viewBox="0 0 224 12" fill="currentColor" class="w-full -mb-1 text-white" preserveAspectRatio="none">
+        <svg viewBox="0 0 224 12" fill="currentColor" class="w-full -mb-1 text-white dark:text-transparent" preserveAspectRatio="none">
           <path d="M0,0 C48.8902582,6.27314026 86.2235915,9.40971039 112,9.40971039 C137.776408,9.40971039 175.109742,6.27314026 224,0 L224,12.0441132 L0,12.0441132 L0,0 Z"></path>
         </svg>
       </div>
@@ -19,19 +19,19 @@
                     <span class="relative text-white">{{ $t("home.landing_title") }}</span>
                   </span>
                   <!-- <span class="block text-gray-900 dark:text-gray-100 xl:inline">{{ $t("home.landing_title") }}</span> -->
-                  <span class="block bg-clip-text text-transparent bg-gradient-to-r font-flower from-pink-500 to-pink-300 xl:inline">{{ $t("home.landing_title2") }}</span>
+                  <span class="block bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-pink-300 xl:inline">{{ $t("home.landing_title2") }}</span>
                 </h1>
                 <p class="mt-3 text-base dark:text-white  text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                   {{ $t("home.landing_desc") }}
                 </p>
                 <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                   <div class="rounded-md shadow">
-                    <a href="#map-keys" class="w-full flex items-center justify-center px-8 py-3 border font-flower border-transparent text-base font-medium rounded-md animate-pulse text-white bg-pink-600 hover:bg-pink-700 md:py-4 md:text-lg md:px-10" v-smooth-scroll>
+                    <a href="#map-keys" class="w-full flex items-center justify-center px-8 py-3 border  border-transparent text-base font-medium rounded-md animate-pulse text-white bg-pink-600 hover:bg-pink-700 md:py-4 md:text-lg md:px-10" v-smooth-scroll>
                       {{ $t("home.discover_btn") }}
                     </a>
                   </div>
                   <div class="mt-3 sm:mt-0 sm:ms-3">
-                    <NuxtLink :to="localePath('book')" class="w-full font-flower flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-pink-700 bg-pink-100 hover:bg-pink-200 md:py-4 md:text-lg md:px-10">
+                    <NuxtLink :to="localePath('book')" class="w-full  flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-pink-700 bg-pink-100 hover:bg-pink-200 md:py-4 md:text-lg md:px-10">
                       <span class="flex h-3 w-3">
                         <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
@@ -66,14 +66,14 @@
     </div>
 
     <!-- How to order -->
-    <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div class="px-4 py-6 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-6 lg:py-6">
       <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
         <div>
           <p class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-pink-900 uppercase rounded-full bg-pink-200">
             How to
           </p>
         </div>
-        <h2 class="max-w-lg mb-6 text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+        <h2 class="max-w-lg mb-6 text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl md:mx-auto">
           <span class="relative inline-block">
             <svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block">
               <defs>
@@ -90,63 +90,68 @@
       </div>
       <div class="relative grid gap-8 row-gap-5 mb-8 md:row-gap-8 lg:grid-cols-4 sm:grid-cols-2">
         <div class="absolute inset-0 flex items-center justify-center sm:hidden lg:flex">
-          <div class="w-px h-full bg-gray-300 lg:w-full lg:h-px"></div>
+          <div class="w-px h-full bg-gray-300 dark:bg-gray-700 lg:w-full lg:h-px"></div>
         </div>
-        <div class="p-5 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2">
+        <div class="p-5 duration-300 transform bg-white dark:bg-gray-900 dark:border-gray-700 border rounded shadow-sm hover:-translate-y-2">
           <div class="flex items-center justify-between mb-2">
             <p class="text-lg font-bold leading-5">Select your meal</p>
-            <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-deep-purple-accent-400 bg-pink-50">
+            <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-pink-400 bg-pink-50">
               1
             </p>
           </div>
-          <p class="text-sm text-gray-900">
+          <p class="text-sm text-gray-900 dark:text-gray-100">
             Select your dishes from a variety of high quality restuants in our food court.
           </p>
         </div>
-        <div class="p-5 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2">
+        <div class="p-5 duration-300 transform bg-white dark:bg-gray-900 dark:border-gray-700 border rounded shadow-sm hover:-translate-y-2">
           <div class="flex items-center justify-between mb-2">
             <p class="text-lg font-bold leading-5">Which table?</p>
-            <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-deep-purple-accent-400 bg-pink-50">
+            <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-pink-accent-400 bg-pink-50">
               2
             </p>
           </div>
-          <p class="text-sm text-gray-900">
+          <p class="text-sm text-gray-900 dark:text-gray-100">
             Tell the system the table number by scannig your table's barcode.
           </p>
         </div>
-        <div class="p-5 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2">
+        <div class="p-5 duration-300 transform bg-white dark:bg-gray-900 dark:border-gray-700 border rounded shadow-sm hover:-translate-y-2">
           <div class="flex items-center justify-between mb-2">
             <p class="text-lg font-bold leading-5">Cart</p>
-            <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-deep-purple-accent-400 bg-pink-50">
+            <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-pink-accent-400 bg-pink-50">
               3
             </p>
           </div>
-          <p class="text-sm text-gray-900">
+          <p class="text-sm text-gray-900 dark:text-gray-100">
             Place your order located in the Cart after entering your name and table number.
           </p>
         </div>
-        <div class="p-5 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2">
+        <div class="p-5 duration-300 transform bg-white dark:bg-gray-900 dark:border-gray-700 border rounded shadow-sm hover:-translate-y-2">
           <div class="flex items-center justify-between mb-2">
             <p class="text-lg font-bold leading-5">Congrats</p>
-            <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-deep-purple-accent-400 bg-pink-50">
+            <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-pink-accent-400 bg-pink-50">
               4
             </p>
           </div>
-          <p class="text-sm text-gray-900">
+          <p class="text-sm text-gray-900 dark:text-gray-100">
             Your order has been placed and will be served to you as fast as possible.
           </p>
         </div>
       </div>
       <div class="text-center">
-        <nuxt-link :to="localePath('resturants')" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">
+        <nuxt-link :to="localePath('resturants')" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md md:w-auto text-pink-700 bg-pink-100 hover:bg-pink-200 focus:shadow-outline focus:outline-none">
           View Resturants
         </nuxt-link>
       </div>
     </div>
 
     <!-- Resturants -->
-    <section id="map-keys" class="text-gray-600 body-font">
-      <h1 class="sm:text-3xl text-2xl font-bold uppercase title-font text-center pt-10 text-pink-500">{{ $t("home.gd_resturants") }}</h1>
+    <section id="map-keys" class="text-gray-600 body-font mt-10">
+      <h1 class="sm:text-3xl text-2xl font-bold uppercase title-font text-center pt-10 text-pink-500">
+        <span class="relative inline-block px-2">
+          <div class="absolute inset-0 transform -skew-x-12 bg-pink-400"></div>
+          <span class="relative text-white">{{ $t("home.gd_resturants") }}</span>
+        </span>
+      </h1>
 
       <div v-if="$fetchState.pending || $fetchState.error">
         <skeletons-home-resturants />
@@ -155,7 +160,7 @@
       <div v-else class="container px-5 py-12 mx-auto flex flex-wrap">
         <div v-for="resturant in resturants" :key="resturant.id" class="flex relative pt-2 pb-10 sm:items-center md:w-2/3 mx-auto">
           <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
-            <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
+            <div class="h-full w-1 bg-gray-200 dark:bg-gray-700 pointer-events-none"></div>
           </div>
           <div class="flex-shrink-0 w-6 h-6 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-pink-500 text-white relative z-10 title-font font-medium text-sm">{{ resturant.id }}</div>
           <div class="flex-grow md:ps-8 ps-6 flex sm:items-center items-start flex-col sm:flex-row">

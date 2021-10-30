@@ -17,7 +17,7 @@
     </span>
   </div>
 </footer> -->
-  <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+  <footer class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
     <!-- <div class="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
       <div class="md:max-w-md lg:col-span-2">
         <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
@@ -115,7 +115,7 @@
         </div>
       </div>
     </div> -->
-    <div class="flex justify-between pt-5 pb-10 border-t flex-row">
+    <div class="flex justify-between pt-5 pb-10 border-t dark:border-gray-700 flex-row">
       <p class="text-sm text-gray-600">
         © 2021 Gourmet District. All rights reserved.
       </p>
@@ -138,5 +138,5 @@
         </a> -->
       </div>
     </div>
-  </div>
+  </footer>
 </template>

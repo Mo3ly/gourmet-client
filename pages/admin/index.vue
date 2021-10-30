@@ -436,14 +436,14 @@
 
       orderDetails(order) {
         let data = `
-              <table class="min-w-full leading-normal mb-6">
-                  <tbody>
+          <table class="min-w-full leading-normal mb-6">
+              <tbody>
         `;
 
         order.products.forEach(
           (el) =>
             (data += `
-            <tr class="text-gray-700">
+              <tr class="text-gray-700">
                 <td class="border-b-2 p-4 dark:border-dark-5">
                     <div class="text-xs mb-2">
                       ${el.data.resturant}
@@ -458,7 +458,7 @@
                       <span class="text-sm pl-3"> <b>NOTES:</b> ${el.notes == null ? "Nothing" : el.notes} </span>
                     </div>
                 </td>
-            </tr>
+              </tr>
           `)
         );
 
