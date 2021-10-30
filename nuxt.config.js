@@ -90,7 +90,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended):
-  buildModules: ["@nuxtjs/svg", "@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@nuxtjs/pwa", "@nuxtjs/laravel-echo"],
+  buildModules: ["@nuxtjs/svg", "@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@nuxtjs/pwa", "@nuxtjs/laravel-echo", "@nuxtjs/google-analytics"],
 
   // Modules:
   modules: ["nuxt-i18n", "@nuxtjs/axios", "@nuxtjs/auth-next", "vue-sweetalert2/nuxt"],
@@ -112,6 +112,11 @@ export default {
   // router
   router: {
     //middleware: ['auth']
+  },
+
+  // google analytics
+  googleAnalytics: {
+    id: "G-R450WRMCRL",
   },
 
   // Auth

@@ -9,7 +9,7 @@
 }
 
 html {
-  font-family: "Montserrat", sans-serif, "Tajawal", sans-serif !important;
+  font-family: "Montserrat", sans-serif, "Tajawal", sans-serif;
   /* _font-family: "Cairo", sans-serif !important;
   _font-family: "Handlee", cursive, "Tajawal", sans-serif;
   _font-family: "Raleway", sans-serif, "Tajawal", sans-serif; */
@@ -17,6 +17,14 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   @apply select-none outline-none;
+}
+
+[dir="rtl"] div {
+  font-family: "Tajawal", sans-serif, "Montserrat", sans-serif !important;
+}
+
+[dir="ltr"] div {
+  font-family: "Montserrat", sans-serif, "Tajawal", sans-serif !important;
 }
 
 /* Scrollbar style */

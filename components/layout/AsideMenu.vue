@@ -2,60 +2,38 @@
   <div>
     <div class="overlay" v-if="show"></div>
 
-    <div v-click-outside="clickOutsideHandler" class="navigation-drawer h-full block lg:hidden fixed left-0 z-20 w-5/6 sm:w-3/4 shadow-2xl" :class="{ 'navigation-drawer--open': show }">
-      <div class="mx-auto h-full bg-white text-gray-900 dark:text-gray-100 dark:bg-dark-surface transition-colors duration-300 ease-linear border-l light:border-light-border dark:border-dark-border">
-        <div class="content-wrapper h-full">
-          <div class="overflow-y-auto h-full pt-4">
-            <div class="flex items-center mx-auto w-full">
-              <nav class="flex lg:pt-1 xl:pt-0 w-full">
-                <ul class="flex flex-col w-full border-b dark:border-dark-border mb-3 pb-3">
-                  <div class="pb-3 border-b dark:border-dark-border mb-6">
-                    {{ $t("main_menu") }}
-                  </div>
-                  <!-- Auth
-                  <li class="text-center">
-                    <div v-if="!$auth.loggedIn">
-                      <nuxt-link to="/login"><i class="gd-icons icon-key-25"></i> Login</nuxt-link>
-                    </div>
-                    <div v-if="$auth.loggedIn">
-                      <h2 :to="localePath('home')" class="block">Welcome {{ $auth.user.name }} </h2>
-                      <button @click="logout">Logout</button>
-                    </div>
-                    <div v-if="$auth.hasScope('admin') || $auth.hasScope('cashier')">
-                      <nuxt-link to="/admin">admin panel </nuxt-link>
-                    </div>
-                  </li>
-                  <!--/ Auth -->
-                  <li v-for="link in $t('header.links')" :key="link.slug" class="py-2 rounded-lg mb-2 transition-transform duration-150 ease-linear transform active:scale-90" @click="show = false">
-                    <NuxtLink
-                      v-if="!link.href"
-                      :disabled="link.disabled"
-                      class="block font-medium hover:no-underline ease-linear"
-                      :to="
-                        localePath({
-                          name: link.slug,
-                          params: { book: link.param_book, slug: link.param_slug },
-                        })
-                      "
-                      exact
-                    >
-                      <i class="gd-icons icon-basket-simple pb-2" aria-hidden="true"></i> &nbsp;
-                      {{ link.name }}
-                    </NuxtLink>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div>
-              <div class="flex ">
-                <span class="pt-2 me-6">Mode: </span>
-                <dark-mode-toggler />
-              </div>
-              <div class="flex ">
-                <span class="pt-5">Language: </span>
-                <language-switcher />
+    <div v-click-outside="clickOutsideHandler" class="navigation-drawer fixed block left-0 top-0 z-20 bg-white dark:bg-gray-800" :class="{ 'navigation-drawer--open': show }">
+      <div class="flex flex-col sm:flex-row sm:justify-around">
+        <div class="w-72 h-screen">
+          <div class="flex items-center justify-start mx-6 mt-10">
+            <img class="h-10" src="~/static/images/logo/logo.svg" />
+            <span class="text-gray-600 dark:text-gray-300 ml-4 text-2xl font-bold">
+              {{ $t("main_menu") }}
+            </span>
+          </div>
+          <nav class="mt-10 px-6">
+            <NuxtLink v-for="link in $t('header.links')" :key="link.slug" :disabled="link.disabled" :to="localePath({ path: link.slug })" class="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 " exact>
+              <svg width="20" height="20" fill="currentColor" class="m-auto" viewBox="0 0 2048 1792" xmlns="http://www.w3.org/2000/svg">
+                <path d="M960 0l960 384v128h-128q0 26-20.5 45t-48.5 19h-1526q-28 0-48.5-19t-20.5-45h-128v-128zm-704 640h256v768h128v-768h256v768h128v-768h256v768h128v-768h256v768h59q28 0 48.5 19t20.5 45v64h-1664v-64q0-26 20.5-45t48.5-19h59v-768zm1595 960q28 0 48.5 19t20.5 45v128h-1920v-128q0-26 20.5-45t48.5-19h1782z"></path>
+              </svg>
+              <span class="mx-4 text-lg font-normal">
+                {{ link.name }}
+              </span>
+              <span class="flex-grow text-right"> </span>
+            </NuxtLink>
+
+            <div class="mt-4">
+              <p class="text-gray-600 dark:text-gray-400 w-full border-b-2 pb-2 dark:border-gray-300 border-gray-600 mb-4 text-md font-normal flow-root"><span class="float-start">Mode</span><span class="float-end">Language</span></p>
+              <div class="flow-root">
+                <dark-mode-toggler class="float-start" />
+                <language-switcher class="float-end -mt-3" />
               </div>
             </div>
+          </nav>
+          <div class="absolute bottom-0 my-5 text-center mx-auto w-full">
+            <a class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors duration-200 font-extralight text-xs" href="#">
+              Made with ♥ by Mohamed Aly.
+            </a>
           </div>
         </div>
       </div>
@@ -115,20 +93,23 @@
     transform: translateX(calc(-100% - 30px));
     transition-duration: 0.2s;
     transition-property: transform;
-    transition-timing-function: theme("transitionTimingFunction.ease-in-out-material-sharp");
-    bottom: 0; /*theme('spacing.16');*/
-    top: 0; /*theme('spacing.16');*/
+    bottom: 0;
+    top: 0;
   }
+
   @screen lg {
     top: theme("spacing.24");
   }
+
   .navigation-drawer--open {
     transform: translateX(0);
     transition-delay: 0s;
   }
+
   .navigation-drawer--open .navigation-drawer_group {
     transform: translateX(0);
   }
+
   .content-wrapper {
     margin-right: auto;
     padding: 0 2rem;
@@ -147,8 +128,7 @@
     cursor: pointer;
   }
 
-  /* active link */
   .navigation-drawer a.nuxt-link-exact-active {
-    @apply text-pink-500 border-b border-pink-500;
+    @apply border-r-2 border-gray-600 dark:border-gray-300 text-gray-800 dark:text-gray-100 bg-gray-100 dark:bg-gray-600;
   }
 </style>

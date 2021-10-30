@@ -49,7 +49,7 @@
         <NuxtChild :key="$route.params.resturant" />
       </main>
     </div>
-    <componentsQRCodeReaderModal v-if="!getTable && isLoaded" />
+    <!-- <componentsQRCodeReaderModal v-if="!getTable && isLoaded" /> -->
   </div>
 </template>
 

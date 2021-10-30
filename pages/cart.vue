@@ -44,7 +44,7 @@
                   </div>
                 </div>
                 <span class="text-white" v-if="getTable">Table: {{ getTable }}</span>
-                <button @click="checkout(getCart, getTable)" :disabled="getCartCount < 1" class="bg-pink-500 hover:bg-pink-400 mt-4 text-white w-full font-bold py-2 px-4 rounded">{{ $t("cart.checkout") }}</button>
+                <button @click="checkout(getCart, getTable)" :disabled="getCartCount < 1 && !getTable" class="bg-pink-500 hover:bg-pink-400 mt-4 text-white w-full font-bold py-2 px-4 rounded">{{ $t("cart.checkout") }}</button>
               </div>
             </div>
           </div>
@@ -68,12 +68,10 @@
       };
     },
     created() {
-      this.isLoaded = true;
+      setTimeout(() => (this.isLoaded = true), 500);
     },
     mounted() {
       this.$axios.$get("/sanctum/csrf-cookie");
-      //   if(localStorage.table)
-      //     this.currentTable = localStorage.table
     },
     methods: {
       ...mapActions(["deleteCartItem", "emptyCart", "setTable"]),
@@ -97,9 +95,8 @@
                   if (!this.inRange(result, 1, 50)) return this.$i18n.locale == "en" ? "You need to enter a valid table number" : "خطأ في رقم الطاولة";
                 },
               });
-        console.log(tableNumber);
+
         if (tableNumber) {
-          // != null && tableNumber != '' && tableNumber != undefined
           const { value: userName } = await this.$swal.fire({
             title: this.$i18n.locale == "en" ? "Order confirmation for table #" + tableNumber : "تأكيد الطلب لطاولة #" + tableNumber,
             input: "text",
