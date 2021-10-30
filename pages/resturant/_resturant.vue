@@ -49,7 +49,7 @@
         <NuxtChild :key="$route.params.resturant" />
       </main>
     </div>
-    <componentsQRCodeReaderModal v-if="!getTable" />
+    <componentsQRCodeReaderModal v-if="!getTable && isLoaded" />
   </div>
 </template>
 
@@ -58,6 +58,14 @@
 
   export default {
     scrollToTop: true,
+    data() {
+      return {
+        isLoaded: false,
+      };
+    },
+    created() {
+      this.isLoaded = true;
+    },
     async asyncData({ params, $axios, error, route, store }) {
       // set table if found
       if (route.query.table) store.commit("setUserTable", route.query.table);

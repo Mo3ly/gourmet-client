@@ -43,7 +43,7 @@
         </div>
       </div>
     </section>
-    <componentsQRCodeReaderModal v-if="!getTable" />
+    <componentsQRCodeReaderModal v-if="!getTable && isLoaded" />
   </div>
 </template>
 
@@ -54,10 +54,14 @@
     data() {
       return {
         searchQuery: null,
+        isLoaded: false,
         table: null,
         api: process.env.API,
         resturants: [],
       };
+    },
+    created() {
+      this.isLoaded = true;
     },
     mounted() {
       if (localStorage.table) this.table = localStorage.table;

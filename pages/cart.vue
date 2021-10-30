@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-    <componentsQRCodeReaderModal v-if="!getTable" />
+    <componentsQRCodeReaderModal v-if="!getTable && isLoaded" />
   </div>
 </template>
 
@@ -63,8 +63,12 @@
       return {
         api: process.env.API,
         allowPayment: false,
+        isLoaded: false,
         // currentTable: null,
       };
+    },
+    created() {
+      this.isLoaded = true;
     },
     mounted() {
       this.$axios.$get("/sanctum/csrf-cookie");
