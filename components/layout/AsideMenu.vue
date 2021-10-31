@@ -12,18 +12,18 @@
             </span>
           </div>
           <nav class="mt-10 px-6">
-            <NuxtLink v-for="link in $t('header.links')" :key="link.slug" :disabled="link.disabled" :to="localePath({ path: link.slug })" class="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 " exact>
+            <NuxtLink v-for="link in $t('header.links')" :key="link.slug" :disabled="link.disabled" :to="localePath({ path: link.slug })" class="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-3 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 " exact>
               <svg width="20" height="20" fill="currentColor" class="m-auto" viewBox="0 0 2048 1792" xmlns="http://www.w3.org/2000/svg">
                 <path d="M960 0l960 384v128h-128q0 26-20.5 45t-48.5 19h-1526q-28 0-48.5-19t-20.5-45h-128v-128zm-704 640h256v768h128v-768h256v768h128v-768h256v768h128v-768h256v768h59q28 0 48.5 19t20.5 45v64h-1664v-64q0-26 20.5-45t48.5-19h59v-768zm1595 960q28 0 48.5 19t20.5 45v128h-1920v-128q0-26 20.5-45t48.5-19h1782z"></path>
               </svg>
-              <span class="mx-4 text-lg font-normal">
+              <span class="mx-4 text-noraml font-normal">
                 {{ link.name }}
               </span>
               <span class="flex-grow text-right"> </span>
             </NuxtLink>
 
-            <div class="mt-4">
-              <p class="text-gray-600 dark:text-gray-400 w-full border-b-2 pb-2 dark:border-gray-300 border-gray-600 mb-4 text-md font-normal flow-root"><span class="float-start">Mode</span><span class="float-end">Language</span></p>
+            <div class="mt-8">
+              <p class="text-gray-600 dark:text-gray-400 w-full border-b-2 pb-2 dark:border-gray-600 border-gray-600 mb-2 text-sm font-normal flow-root"><span class="float-start">Mode</span><span class="float-end">Language</span></p>
               <div class="flow-root">
                 <dark-mode-toggler class="float-start" />
                 <language-switcher class="float-end -mt-3" />
@@ -31,9 +31,7 @@
             </div>
           </nav>
           <div class="absolute bottom-0 my-5 text-center mx-auto w-full">
-            <a class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors duration-200 font-extralight text-xs" href="#">
-              Made with ♥ by Mohamed Aly.
-            </a>
+            <a class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors duration-200 font-extralight text-xs" href="mailto:mo3lyyy@gmail.com"> Made by <span class="font-normal">MO3LY</span>. </a>
           </div>
         </div>
       </div>
@@ -129,6 +127,6 @@
   }
 
   .navigation-drawer a.nuxt-link-exact-active {
-    @apply border-r-2 border-gray-600 dark:border-gray-300 text-gray-800 dark:text-gray-100 bg-gray-100 dark:bg-gray-600;
+    @apply border-e-2 border-gray-600 dark:border-gray-300 text-gray-800 dark:text-gray-100 bg-gray-100 dark:bg-gray-600;
   }
 </style>

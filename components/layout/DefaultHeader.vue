@@ -56,8 +56,8 @@
             <!-- Language -->
 
             <!-- Auth -->
-            <nuxt-link :to="localePath('/login')" v-if="!$auth.loggedIn" class="text-center h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none me-2">
-              <div class="h-full w-full bg-gray-200"><i class="gd-icons icon-key-25"></i></div>
+            <nuxt-link :to="localePath('/login')" v-if="!$auth.loggedIn" class="me-2 -mt-1 p-2">
+              <div class="h-full w-full text-gray-600  dark:text-gray-200"><i class="gd-icons icon-key-25"></i></div>
             </nuxt-link>
 
             <div class="relative me-2" v-else>

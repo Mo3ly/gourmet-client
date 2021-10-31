@@ -211,9 +211,9 @@
           .catch((e) => (this.error = e.response.data.message));
       },
       notificationClip() {
-        this.$refs.notificationAudio.addEventListener("canplaythrough", () => {
-          this.$refs.notificationAudio.play();
-        });
+        // this.$refs.notificationAudio.addEventListener("canplaythrough", () => {
+        this.$refs.notificationAudio.play();
+        //});
       },
     },
     mounted() {
@@ -226,10 +226,11 @@
           timer: 10000,
           timerProgressBar: true,
         });
-        Toast.fire({
-          icon: "success",
-          html: `New Order #<b>${response.order_id}</b> for table ${response.table}.`,
-        });
+        if (this.$route.path.includes("admin"))
+          Toast.fire({
+            icon: "success",
+            html: `New Order #<b>${response.order_id}</b> for table ${response.table}.`,
+          });
         this.notificationClip();
       });
       // bookings
@@ -241,10 +242,11 @@
           timer: 10000,
           timerProgressBar: true,
         });
-        Toast.fire({
-          icon: "success",
-          html: `New booking #<b>${response.id}</b> for Client ${response.name}.`,
-        });
+        if (this.$route.path.includes("admin"))
+          Toast.fire({
+            icon: "success",
+            html: `New booking #<b>${response.id}</b> for Client ${response.name}.`,
+          });
         this.notificationClip();
       });
     },

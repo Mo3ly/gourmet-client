@@ -8,7 +8,7 @@
         <div class="flex justify-between text-base font-semibolds text-gray-900 dark:text-gray-100">
           <h3>
             <a href="#">
-              <span v-if="getCart.find((item) => item.id == product.id)" class="text-pink-500"> {{ getCart.find((item) => item.id == product.id).quantity }}x </span> {{ $i18n.locale == "en" ? product.name_en : product.name_ar }}
+              <span v-if="getCart.find((item) => item.id == product.id)" class="text-pink-500"> {{ getCart.map((el) => (el.id == product.id ? el.quantity : 0)).reduce((a, b) => a + b) }}x </span> {{ $i18n.locale == "en" ? product.name_en : product.name_ar }}
             </a>
           </h3>
           <p class="ms-4 text-pink-500">{{ product.price }} {{ $t("common.currency") }}</p>

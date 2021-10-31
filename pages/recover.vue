@@ -4,7 +4,7 @@
       <div>
         <img class="mx-auto h-20 w-auto" src="~/static/images/logo/logo.svg" alt="gourmet" />
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-gray-400">
-          Sign in to your account
+          Recover your account
         </h2>
       </div>
       <div class="" v-if="error">
@@ -15,24 +15,14 @@
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="email-address" class="sr-only">Email address</label>
-            <input id="email-address" v-model="email" name="email" type="email" autocomplete="email" required="" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:bg-gray-800 dark:border-gray-600 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 focus:z-10 sm:text-sm" placeholder="Email address" />
-          </div>
-          <div>
-            <label for="password" class="sr-only">Password</label>
-            <input id="password" v-model="password" name="password" type="password" autocomplete="current-password" required="" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:bg-gray-800 dark:border-gray-600 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 focus:z-10 sm:text-sm" placeholder="Password" />
+            <input id="email-address" v-model="email" name="email" type="email" autocomplete="email" required="" class="appearance-none relative block w-full px-3 py-2 border border-gray-300 dark:bg-gray-800 dark:border-gray-600 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 focus:z-10 sm:text-sm" placeholder="Email address" />
           </div>
         </div>
 
         <div class="flex items-center justify-between">
           <div class="text-sm">
-            <nuxt-link :to="localePath('/register')" class="font-medium text-pink-600 hover:text-pink-500">
-              Create an account?
-            </nuxt-link>
-          </div>
-
-          <div class="text-sm">
-            <nuxt-link :to="localePath('/recover')" class="font-medium text-pink-600 hover:text-pink-500">
-              Forgot your password?
+            <nuxt-link :to="localePath('/login')" class="font-medium text-pink-600 hover:text-pink-500">
+              Return to login?
             </nuxt-link>
           </div>
         </div>
@@ -42,7 +32,7 @@
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               <i class="h-5 w-5 gd-icons icons-lock  text-pink-500 group-hover:text-pink-400" aria-hidden="true" />
             </span>
-            Sign in
+            Recover
           </button>
         </div>
       </form>
@@ -57,23 +47,21 @@
     data() {
       return {
         email: "",
-        password: "",
         error: null,
       };
     },
     methods: {
-      async login() {
+      async recover() {
         this.$nuxt.$loading.start();
         //this.loading = false
         this.$auth
           .loginWith("laravelSanctum", {
             data: {
               email: this.email,
-              password: this.password,
             },
           })
-          .then((r) => (r.status == 201 ? this.$swal({ icon: "success", text: "Logged in successfully!", timer: 3000, timerProgressBar: true }) : null))
-          .catch((e) => this.$swal({ icon: "error", text: e.response.data.errors[0][0], timer: 3000, timerProgressBar: true }));
+          .then(this.$swal({ icon: "success", text: "Logged in successfully!", timer: 3000, timerProgressBar: true }))
+          .catch((e) => (this.error = e.response.data.errors[0][0]));
       },
     },
     beforeCreate() {
