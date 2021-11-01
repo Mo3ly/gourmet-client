@@ -7,15 +7,13 @@
         <div class="w-72 h-screen">
           <div class="flex items-center justify-start mx-6 mt-10">
             <img class="h-10" src="~/static/images/logo/logo.svg" />
-            <span class="text-gray-600 dark:text-gray-300 ml-4 text-2xl font-bold">
-              {{ $t("main_menu") }}
+            <span class="text-gray-600 dark:text-gray-300 ms-4 text-2xl font-bold">
+              {{ $t("aside.menu") }}
             </span>
           </div>
           <nav class="mt-10 px-6">
             <NuxtLink v-for="link in $t('header.links')" :key="link.slug" :disabled="link.disabled" :to="localePath({ path: link.slug })" class="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-3 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 " exact>
-              <svg width="20" height="20" fill="currentColor" class="m-auto" viewBox="0 0 2048 1792" xmlns="http://www.w3.org/2000/svg">
-                <path d="M960 0l960 384v128h-128q0 26-20.5 45t-48.5 19h-1526q-28 0-48.5-19t-20.5-45h-128v-128zm-704 640h256v768h128v-768h256v768h128v-768h256v768h128v-768h256v768h59q28 0 48.5 19t20.5 45v64h-1664v-64q0-26 20.5-45t48.5-19h59v-768zm1595 960q28 0 48.5 19t20.5 45v128h-1920v-128q0-26 20.5-45t48.5-19h1782z"></path>
-              </svg>
+              <img width="20" height="20" class="m-auto fill-current text-gray-600" :src="require(`~/assets/icons/${link.icon}.svg`)" />
               <span class="mx-4 text-noraml font-normal">
                 {{ link.name }}
               </span>
@@ -23,7 +21,10 @@
             </NuxtLink>
 
             <div class="mt-8">
-              <p class="text-gray-600 dark:text-gray-400 w-full border-b-2 pb-2 dark:border-gray-600 border-gray-600 mb-2 text-sm font-normal flow-root"><span class="float-start">Mode</span><span class="float-end">Language</span></p>
+              <p class="text-gray-600 dark:text-gray-400 w-full border-b-2 pb-2 dark:border-gray-600 border-gray-600 mb-2 text-sm font-normal flow-root">
+                <span class="float-start">{{ $t("aside.mode") }}</span>
+                <span class="float-end">{{ $t("aside.language") }}</span>
+              </p>
               <div class="flow-root">
                 <dark-mode-toggler class="float-start" />
                 <language-switcher class="float-end -mt-3" />
@@ -31,7 +32,7 @@
             </div>
           </nav>
           <div class="absolute bottom-0 my-5 text-center mx-auto w-full">
-            <a class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors duration-200 font-extralight text-xs" href="mailto:mo3lyyy@gmail.com"> Made by <span class="font-normal">MO3LY</span>. </a>
+            <a class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors duration-200 font-extralight text-xs" href="mailto:mo3lyyy@gmail.com"> {{ $t("aside.signature") }} </a>
           </div>
         </div>
       </div>

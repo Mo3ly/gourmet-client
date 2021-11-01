@@ -54,7 +54,7 @@ export default {
       // { rel:"apple-touch-icon", sizes:"152x152", href:"/images/logo/apple-icon-152x152.png" },
       // { rel:"apple-touch-icon", sizes:"180x180", href:"/images/logo/apple-icon-180x180.png" },
       // { rel:"manifest", href:"/manifest.json" },
-      //{ rel:"canonical", href:"https://www.g-d.qa/" },
+      { rel: "canonical", href: "https://www.g-d.app/" },
     ],
     // script:[
     //   {

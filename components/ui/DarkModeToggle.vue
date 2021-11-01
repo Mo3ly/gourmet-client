@@ -7,10 +7,10 @@
     <div class="hidden lg:inline-block ms-2">
       <transition name="from-bottom-to-bottom" mode="out-in">
         <span v-if="$colorMode.preference === 'light'" key="dark" class="inline-block font-medium">
-          Dark
+          {{ $t("common.dark") }}
         </span>
         <span v-else-if="$colorMode.preference === 'dark'" key="light" class="inline-block font-medium">
-          Light
+          {{ $t("common.light") }}
         </span>
       </transition>
     </div>

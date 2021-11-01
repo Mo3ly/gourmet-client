@@ -205,14 +205,43 @@
     head() {
       let name = this.$t("name");
       let locale = this.$i18n.locale;
+      let title = locale == "en" ? this.resturant.name_en : this.resturant.name_ar;
+      let description = locale == "en" ? this.resturant.desc_en : this.resturant.desc_ar;
       return {
-        title: locale == "en" ? this.resturant.name_en : this.resturant.name_ar,
+        title: title,
         titleTemplate: "%s — " + name,
         meta: [
           {
             hid: "description",
             name: "description",
-            content: locale == "en" ? this.resturant.desc_en : this.resturant.desc_ar,
+            content: description,
+          },
+          // Open Graph
+          {
+            hid: "og:site_name",
+            property: "og:site_name",
+            content: name,
+          },
+          {
+            hid: "og:title",
+            property: "og:title",
+            content: title + " — " + name,
+          },
+          {
+            hid: "og:description",
+            property: "og:description",
+            content: description,
+          },
+          // Twitter Card
+          {
+            hid: "twitter:title",
+            name: "twitter:title",
+            content: title + " — " + name,
+          },
+          {
+            hid: "twitter:description",
+            name: "twitter:description",
+            content: description,
           },
         ],
       };

@@ -12,7 +12,7 @@
         <div class="mx-auto">
           <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-xl lg:w-full lg:pb-28 xl:pb-32">
             <main class="mt-10 mx-auto max-w-5xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-              <div class="sm:text-center lg:text-left animate__animated animate__bounceInLeft animate__delay-1s">
+              <div class="sm:text-center lg:text-start animate__animated animate__bounceInLeft animate__delay-1s">
                 <h1 class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
                   <span class="relative inline-block px-2">
                     <div class="absolute inset-0 transform -skew-x-12 bg-pink-400"></div>
@@ -50,16 +50,6 @@
       </div>
     </div>
 
-    <!-- Gourmet Video -->
-    <!-- <div>
-      <h1 class="sm:text-3xl text-2xl font-bold uppercase title-font text-center pt-10 text-pink-500 mt-2">{{ $t('name') }}</h1>
-      <div class="m-10 p-5 shadow-md rounded bg-pink-200">
-        <div class="aspect-w-16 aspect-h-8">
-          <iframe src="https://www.youtube-nocookie.com/embed/TixsV6fSpRo?version=3&enablejsapi=1&html5=1&hd=1&wmode=opaque&showinfo=0&rel=0&origin=http://www.g-d.qa;&controls=0&playsinline=1&?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div> -->
-
     <!-- sliders -->
     <div>
       <components-rateModal />
@@ -70,12 +60,12 @@
       <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
         <div>
           <p class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-pink-900 uppercase rounded-full bg-pink-200">
-            How to
+            {{ $t("home.orderGuide.how") }}
           </p>
         </div>
         <h2 class="max-w-lg mb-6 text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl md:mx-auto">
           <span class="relative inline-block">
-            <svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block">
+            <svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ms-20 text-blue-gray-100 lg:w-32 lg:-ms-28 lg:-mt-10 sm:block">
               <defs>
                 <pattern id="d0d83814-78b6-480f-9a5f-7f637616b267" x="0" y="0" width=".135" height=".30">
                   <circle cx="1" cy="1" r=".7"></circle>
@@ -83,9 +73,9 @@
               </defs>
               <rect fill="url(#d0d83814-78b6-480f-9a5f-7f637616b267)" width="52" height="24"></rect>
             </svg>
-            <span class="relative">Make</span>
+            <span class="relative">{{ $t("home.orderGuide.title1") }}</span>
           </span>
-          an order
+          {{ $t("home.orderGuide.title2") }}
         </h2>
       </div>
       <div class="relative grid gap-8 row-gap-5 mb-8 md:row-gap-8 lg:grid-cols-4 sm:grid-cols-2">
@@ -94,57 +84,112 @@
         </div>
         <div class="p-5 duration-300 transform bg-white dark:bg-gray-900 dark:border-gray-700 border rounded shadow-sm hover:-translate-y-2">
           <div class="flex items-center justify-between mb-2">
-            <p class="text-lg font-bold leading-5">Select your meal</p>
+            <p class="text-lg font-bold leading-5">{{ $t("home.orderGuide.stepTitle1") }}</p>
             <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-pink-400 bg-pink-50">
               1
             </p>
           </div>
           <p class="text-sm text-gray-900 dark:text-gray-100">
-            Select your dishes from a variety of high quality restuants in our food court.
+            {{ $t("home.orderGuide.stepDesc1") }}
           </p>
         </div>
         <div class="p-5 duration-300 transform bg-white dark:bg-gray-900 dark:border-gray-700 border rounded shadow-sm hover:-translate-y-2">
           <div class="flex items-center justify-between mb-2">
-            <p class="text-lg font-bold leading-5">Which table?</p>
+            <p class="text-lg font-bold leading-5">{{ $t("home.orderGuide.stepTitle2") }}</p>
             <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-pink-accent-400 bg-pink-50">
               2
             </p>
           </div>
           <p class="text-sm text-gray-900 dark:text-gray-100">
-            Tell the system the table number by scannig your table's barcode.
+            {{ $t("home.orderGuide.stepDesc2") }}
           </p>
         </div>
         <div class="p-5 duration-300 transform bg-white dark:bg-gray-900 dark:border-gray-700 border rounded shadow-sm hover:-translate-y-2">
           <div class="flex items-center justify-between mb-2">
-            <p class="text-lg font-bold leading-5">Cart</p>
+            <p class="text-lg font-bold leading-5">{{ $t("home.orderGuide.stepTitle3") }}</p>
             <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-pink-accent-400 bg-pink-50">
               3
             </p>
           </div>
           <p class="text-sm text-gray-900 dark:text-gray-100">
-            Place your order located in the Cart after entering your name and table number.
+            {{ $t("home.orderGuide.stepDesc3") }}
           </p>
         </div>
         <div class="p-5 duration-300 transform bg-white dark:bg-gray-900 dark:border-gray-700 border rounded shadow-sm hover:-translate-y-2">
           <div class="flex items-center justify-between mb-2">
-            <p class="text-lg font-bold leading-5">Congrats</p>
+            <p class="text-lg font-bold leading-5">{{ $t("home.orderGuide.stepTitle4") }}</p>
             <p class="flex items-center justify-center w-6 h-6 font-bold rounded text-pink-accent-400 bg-pink-50">
               4
             </p>
           </div>
           <p class="text-sm text-gray-900 dark:text-gray-100">
-            Your order has been placed and will be served to you as fast as possible.
+            {{ $t("home.orderGuide.stepDesc4") }}
           </p>
         </div>
       </div>
       <div class="text-center">
         <nuxt-link :to="localePath('resturants')" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md md:w-auto text-pink-700 bg-pink-100 hover:bg-pink-200 focus:shadow-outline focus:outline-none">
-          View Resturants
+          {{ $t("home.orderGuide.resturants") }}
         </nuxt-link>
       </div>
     </div>
 
+    <!-- Gourmet Video -->
+    <div class="px-4 py-6 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-6 lg:py-6">
+      <h1 class="sm:text-3xl text-2xl font-bold uppercase title-font text-center pt-10 text-pink-500 mt-2">{{ $t("name") }}</h1>
+      <div class="p-3 mt-10 shadow-md rounded bg-pink-200">
+        <div class="aspect-w-16 aspect-h-8">
+          <iframe src="https://www.youtube-nocookie.com/embed/TixsV6fSpRo?version=3&enablejsapi=1&html5=1&hd=1&wmode=opaque&showinfo=0&rel=0&origin=http://www.g-d.qa;&controls=0&playsinline=1&?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
     <!-- Resturants -->
+    <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+      <h1 class="sm:text-3xl text-2xl font-bold uppercase title-font text-center pt-10 text-pink-500">
+        <span class="relative inline-block px-2">
+          <div class="absolute inset-0 transform -skew-x-12 bg-pink-400"></div>
+          <span class="relative text-white">{{ $t("home.gd_resturants") }}</span>
+        </span>
+      </h1>
+
+      <div v-if="$fetchState.pending || $fetchState.error">
+        <skeletons-home-resturants />
+      </div>
+
+      <div v-else class="grid max-w-2xl mx-auto mt-16">
+        <div v-for="(resturant, index) in resturants" :key="resturant.id" class="flex">
+          <div class="flex flex-col items-center me-6">
+            <div :class="[index == 0 ? 'opacity-0' : 'bg-gray-300']" class="w-px h-10 sm:h-full"></div>
+            <div>
+              <div class="flex items-center justify-center w-8 h-8 text-xs font-medium border rounded-full">
+                {{ index + 1 }}
+              </div>
+            </div>
+            <div class="w-px h-full bg-gray-300"></div>
+          </div>
+          <div class="flex flex-col pb-6 sm:items-center sm:flex-row sm:pb-0">
+            <div class="sm:me-5">
+              <div class="flex items-center justify-center w-16 h-16 my-3 rounded-full bg-indigo-50 sm:w-24 sm:h-24">
+                <nuxt-link :to="localePath({ path: 'resturant/' + resturant.name_en })">
+                  <div class="flex-shrink-0 w-24 h-24 bg-pink-100 text-pink-500 rounded-full inline-flex items-center justify-center">
+                    <img class="w-20 h-20 rounded-full object-cover object-center" :src="resturant.image" />
+                  </div>
+                </nuxt-link>
+              </div>
+            </div>
+            <div>
+              <nuxt-link class="text-xl font-semibold sm:text-base text-pink-500" :to="localePath({ path: 'resturant/' + resturant.name_en })">{{ $i18n.locale == "en" ? resturant.name_en : resturant.name_ar }}</nuxt-link>
+              <p class="text-sm text-gray-700">
+                {{ $i18n.locale == "en" ? resturant.desc_en : resturant.desc_ar }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resturants 
     <section id="map-keys" class="text-gray-600 body-font mt-10">
       <h1 class="sm:text-3xl text-2xl font-bold uppercase title-font text-center pt-10 text-pink-500">
         <span class="relative inline-block px-2">
@@ -179,6 +224,7 @@
         </div>
       </div>
     </section>
+    -->
   </div>
 </template>
 
@@ -193,7 +239,6 @@
     activated() {
       if (this.$fetchState.timestamp <= Date.now() - 30000) {
         this.$fetch();
-        console.log("refetched the resturants data");
       }
     },
     async fetch() {
@@ -203,7 +248,50 @@
           return response.data;
         })
         .catch((e) => console.log(e));
-      console.log("fetched resturants data");
+    },
+    head() {
+      let name = this.$t("name");
+      let title = this.$t("home.meta.title");
+      let description = this.$t("home.meta.description");
+
+      return {
+        title: title,
+        titleTemplate: "%s — " + name,
+        meta: [
+          {
+            hid: "description",
+            name: "description",
+            content: description,
+          },
+          // Open Graph
+          {
+            hid: "og:site_name",
+            property: "og:site_name",
+            content: name,
+          },
+          {
+            hid: "og:title",
+            property: "og:title",
+            content: title + " — " + name,
+          },
+          {
+            hid: "og:description",
+            property: "og:description",
+            content: description,
+          },
+          // Twitter Card
+          {
+            hid: "twitter:title",
+            name: "twitter:title",
+            content: title + " — " + name,
+          },
+          {
+            hid: "twitter:description",
+            name: "twitter:description",
+            content: description,
+          },
+        ],
+      };
     },
   };
 </script>

@@ -76,21 +76,19 @@
             </div>
           </a> -->
           <h2 class="font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
-            <span class="inline-block mb-2">Gourmet's Gallery</span>
-            <div class="h-1 ml-auto duration-300 origin-left transform bg-pink-400 scale-x-30 group-hover:scale-x-100"></div>
+            <span class="inline-block mb-2">{{ $t("gallery.GDgallery") }}</span>
+            <div class="h-1 ms-auto duration-300 origin-left transform bg-pink-400 scale-x-30 group-hover:scale-x-100"></div>
           </h2>
         </div>
-        <p class="w-full text-gray-700 dark:text-gray-500 lg:text-sm lg:max-w-md">
-          "The secret of Happiness in Gourmet District is the food but we didn’t forget about the importance of entertainment. Music feeds the soul and the smile on your faces is our daily motivation."
-        </p>
+        <p class="w-full text-gray-700 dark:text-gray-500 lg:text-sm lg:max-w-md">"{{ $t("gallery.description") }}"</p>
       </div>
       <div class="relative">
         <components-gallery />
       </div>
       <div class="text-center">
         <a href="/" aria-label="" class="inline-flex items-center font-semibold transition-colors duration-200 text-pink-400 hover:text-deep-purple-800">
-          See more
-          <svg class="inline-block w-3 ml-2" fill="currentColor" viewBox="0 0 12 12">
+          {{ $t("common.more") }}
+          <svg class="inline-block w-3 ms-2" fill="currentColor" viewBox="0 0 12 12">
             <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>
           </svg>
         </a>
@@ -112,6 +110,49 @@
     data() {
       return {
         gallery,
+      };
+    },
+    head() {
+      let name = this.$t("name");
+      let title = this.$t("gallery.meta.title");
+      let description = this.$t("gallery.meta.description");
+      return {
+        title: title,
+        titleTemplate: "%s — " + name,
+        meta: [
+          {
+            hid: "description",
+            name: "description",
+            content: description,
+          },
+          // Open Graph
+          {
+            hid: "og:site_name",
+            property: "og:site_name",
+            content: name,
+          },
+          {
+            hid: "og:title",
+            property: "og:title",
+            content: title + " — " + name,
+          },
+          {
+            hid: "og:description",
+            property: "og:description",
+            content: description,
+          },
+          // Twitter Card
+          {
+            hid: "twitter:title",
+            name: "twitter:title",
+            content: title + " — " + name,
+          },
+          {
+            hid: "twitter:description",
+            name: "twitter:description",
+            content: description,
+          },
+        ],
       };
     },
   };

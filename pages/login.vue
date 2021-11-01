@@ -4,7 +4,7 @@
       <div>
         <img class="mx-auto h-20 w-auto" src="~/static/images/logo/logo.svg" alt="gourmet" />
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-gray-400">
-          Sign in to your account
+          {{ $t("login.title") }}
         </h2>
       </div>
       <div class="" v-if="error">
@@ -15,24 +15,24 @@
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="email-address" class="sr-only">Email address</label>
-            <input id="email-address" v-model="email" name="email" type="email" autocomplete="email" required="" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:bg-gray-800 dark:border-gray-600 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 focus:z-10 sm:text-sm" placeholder="Email address" />
+            <input id="email-address" v-model="email" name="email" type="email" autocomplete="email" required="" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:bg-gray-800 dark:border-gray-600 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 focus:z-10 sm:text-sm" :placeholder="$t('login.email')" />
           </div>
           <div>
             <label for="password" class="sr-only">Password</label>
-            <input id="password" v-model="password" name="password" type="password" autocomplete="current-password" required="" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:bg-gray-800 dark:border-gray-600 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 focus:z-10 sm:text-sm" placeholder="Password" />
+            <input id="password" v-model="password" name="password" type="password" autocomplete="current-password" required="" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:bg-gray-800 dark:border-gray-600 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 focus:z-10 sm:text-sm" :placeholder="$t('login.password')" />
           </div>
         </div>
 
         <div class="flex items-center justify-between">
           <div class="text-sm">
             <nuxt-link :to="localePath('/register')" class="font-medium text-pink-600 hover:text-pink-500">
-              Create an account?
+              {{ $t("login.register") }}
             </nuxt-link>
           </div>
 
           <div class="text-sm">
             <nuxt-link :to="localePath('/recover')" class="font-medium text-pink-600 hover:text-pink-500">
-              Forgot your password?
+              {{ $t("login.recover") }}
             </nuxt-link>
           </div>
         </div>
@@ -42,7 +42,7 @@
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               <i class="h-5 w-5 gd-icons icons-lock  text-pink-500 group-hover:text-pink-400" aria-hidden="true" />
             </span>
-            Sign in
+            {{ $t("login.login") }}
           </button>
         </div>
       </form>
@@ -78,6 +78,49 @@
     },
     beforeCreate() {
       if (this.$auth.loggedIn) this.$router.push({ name: "home" });
+    },
+    head() {
+      let name = this.$t("name");
+      let title = this.$t("login.meta.title");
+      let description = this.$t("login.meta.description");
+      return {
+        title: title,
+        titleTemplate: "%s — " + name,
+        meta: [
+          {
+            hid: "description",
+            name: "description",
+            content: description,
+          },
+          // Open Graph
+          {
+            hid: "og:site_name",
+            property: "og:site_name",
+            content: name,
+          },
+          {
+            hid: "og:title",
+            property: "og:title",
+            content: title + " — " + name,
+          },
+          {
+            hid: "og:description",
+            property: "og:description",
+            content: description,
+          },
+          // Twitter Card
+          {
+            hid: "twitter:title",
+            name: "twitter:title",
+            content: title + " — " + name,
+          },
+          {
+            hid: "twitter:description",
+            name: "twitter:description",
+            content: description,
+          },
+        ],
+      };
     },
   };
 </script>

@@ -116,9 +116,7 @@
       </div>
     </div> -->
     <div class="flex justify-between pt-5 pb-10 border-t dark:border-gray-700 flex-row">
-      <p class="text-sm text-gray-600">
-        © 2021 Gourmet District. All rights reserved.
-      </p>
+      <p class="text-sm text-gray-600">© 2021 {{ $t("name") }}. {{ $t("footer.copyrights") }}</p>
       <div class="flex items-center space-x-4 smt-0">
         <!-- <a href="/" class="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-400">
           <svg viewBox="0 0 24 24" fill="currentColor" class="h-5">

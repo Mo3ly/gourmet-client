@@ -5,7 +5,7 @@
         <div class="ps-3">{{ $t("resturant.resturants") }}</div>
       </template>
       <template v-slot:content>
-        <span>Choose your taste from a variety of top level restaurants.</span>
+        <span>{{ $t("resturants.bannerTitle") }}</span>
         <div class="pb-3 pt-4">
           <div class="bg-white dark:bg-gray-900  flex items-center rounded-md shadow">
             <input type="text" id="search" v-model="searchQuery" :placeholder="$t('common.search')" class="rounded-l-md w-full py-4 px-6 text-gray-700 dark:bg-gray-900 leading-tight border-none focus:outline-none focus:ring-0" autocomplete="off" />
@@ -22,21 +22,21 @@
     <section class="text-gray-600 body-font">
       <div class="container px-5 mx-auto max-w-7x1">
         <div class="flex flex-wrap items-center justify-center">
-          <div v-for="resturant in resultQuery" :key="resturant.id" class="flex-shrink-0 m-6 relative overflow-hidden bg-pink-500 rounded-lg max-w-xs shadow-lg">
+          <div v-for="resturant in resultQuery" :key="resturant.id" class="flex-shrink-0 m-6 relative overflow-hidden bg-pink-500 w-64 rounded-lg max-w-xs shadow-lg">
             <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
               <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white" />
               <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white" />
             </svg>
             <div class="relative pt-10 px-10 flex items-center justify-center">
-              <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-              <img class="relative rounded shadow h-24" v-if="resturant.image" :src="resturant.image" alt="" />
+              <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ms-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
+              <img class="relative rounded shadow h-24" v-if="resturant.image" :src="resturant.image" :alt="[$i18n.locale == 'en' ? resturant.name_en : resturant.name_ar]" />
               <div v-else class="relative rounded bg-gray-200 shadow w-20" />
             </div>
             <div class="relative text-white px-6 pb-6 mt-6">
               <span class="block opacity-75 -mb-1">{{ resturant.genere }}</span>
               <div class="flex justify-between">
                 <span class="block font-semibold text-xl">{{ $i18n.locale == "en" ? resturant.name_en : resturant.name_ar }}</span>
-                <router-link :to="localePath('/resturant/' + resturant.name_en)" class="block bg-white rounded-full text-pink-500 text-xs font-bold px-3 py-2 leading-none flex items-center">View</router-link>
+                <router-link :to="localePath('/resturant/' + resturant.name_en)" class="block bg-white rounded-full text-pink-500 text-xs font-bold px-3 py-2 leading-none flex items-center">{{ $t("resturants.view") }}</router-link>
               </div>
             </div>
           </div>
@@ -113,6 +113,49 @@
           return this.resturants;
         }
       },
+    },
+    head() {
+      let name = this.$t("name");
+      let title = this.$t("resturants.meta.title");
+      let description = this.$t("resturants.meta.description");
+      return {
+        title: title,
+        titleTemplate: "%s — " + name,
+        meta: [
+          {
+            hid: "description",
+            name: "description",
+            content: description,
+          },
+          // Open Graph
+          {
+            hid: "og:site_name",
+            property: "og:site_name",
+            content: name,
+          },
+          {
+            hid: "og:title",
+            property: "og:title",
+            content: title + " — " + name,
+          },
+          {
+            hid: "og:description",
+            property: "og:description",
+            content: description,
+          },
+          // Twitter Card
+          {
+            hid: "twitter:title",
+            name: "twitter:title",
+            content: title + " — " + name,
+          },
+          {
+            hid: "twitter:description",
+            name: "twitter:description",
+            content: description,
+          },
+        ],
+      };
     },
   };
 </script>
