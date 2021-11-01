@@ -107,7 +107,7 @@
             return this.searchQuery
               .toLowerCase()
               .split(" ")
-              .every((v) => item.name_en.toLowerCase().includes(v));
+              .every((v) => (this.$i18n.locale == "en" ? item.name_en.toLowerCase().includes(v) : item.name_ar.toLowerCase().includes(v)));
           });
         } else {
           return this.resturants;

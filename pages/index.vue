@@ -145,7 +145,7 @@
     </div>
 
     <!-- Resturants -->
-    <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div id="map-keys" class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <h1 class="sm:text-3xl text-2xl font-bold uppercase title-font text-center pt-10 text-pink-500">
         <span class="relative inline-block px-2">
           <div class="absolute inset-0 transform -skew-x-12 bg-pink-400"></div>
