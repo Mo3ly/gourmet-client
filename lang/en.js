@@ -53,7 +53,7 @@ module.exports = {
   home: {
     meta: {
       title: "Home page",
-      description: "Home page desc",
+      description: "Gourmet District First Food Court in Qatar - The concept is offering you (Yes special You) a venue that offers from the best Burgers to the best cakes in town",
     },
 
     home: "home",
