@@ -1,10 +1,20 @@
 # Gourmet District `Ordering Web App`
+Real-time dine-in ordering progressive web app using Nuxt.js, Tailwind CSS, Laravel as an API, and Pusher for web sockets.
 
 ![App Image](images/image1.png)
+
+---
+
 ![App Image](images/image3.png)
+
+---
+
 ![App Image](images/image2.png)
 
-Designed and implemented a real-time dine-in ordering progressive web app using Nuxt.js, Tailwind CSS, Laravel as an API, and Pusher for web sockets.
+---
+
+
+**API Repository**: [Gourmet API on GitHub](https://github.com/mo3ly/gourmet-api)
 
 ## Build Setup
 
